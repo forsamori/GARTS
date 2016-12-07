@@ -2,11 +2,17 @@
 //...render using software on the CPU. Swap to GPU to allow...
 //...CPU to concentrate on game-logic and GA...
 
+//Abstract underlying system functions into APOLLO.h, class should be named afw (ApolloFrameWork)
+
 #ifndef _MAIN_H
 #define _MAIN_H
 
-#include "SDL.h"
+//#include "SDL.h"
+#include "Appollo.h"
 #include <stdio.h>
+
+Appollo appollo;
+
 
 //Const definitions
 const int SCREEN_WIDTH = 640;

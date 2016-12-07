@@ -1,0 +1,16 @@
+﻿Build started 07/12/2016 10:24:39.
+     1>Project "C:\GARTS\GARTS\Appollo\Appollo.vcxproj" on node 3 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt Appollo.cpp APFFileLoader.cpp APFRender.cpp
+         APFRender.cpp
+     1>c:\garts\garts\appollo\appollo.h(9): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+         APFFileLoader.cpp
+     1>c:\garts\garts\appollo\appollo.h(9): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+         Appollo.cpp
+     1>c:\garts\garts\appollo\appollo.h(9): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+         Generating Code...
+     1>Done Building Project "C:\GARTS\GARTS\Appollo\Appollo.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.45

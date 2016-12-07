@@ -1,0 +1,13 @@
+﻿Build started 07/12/2016 11:03:49.
+     1>Project "C:\GARTS\GARTS\Appollo\Appollo.vcxproj" on node 3 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\GARTS\GARTS\Debug\Appollo.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\GARTS\GARTS\Debug\Appollo.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\GARTS\GARTS\Debug\Appollo.lib" /MACHINE:X86 Debug\Appollo.obj
+         Debug\APFFileLoader.obj
+         Debug\APFRender.obj
+     1>SDL2main.lib(SDL_windows_main.obj) : error LNK2019: unresolved external symbol _SDL_main referenced in function _main_utf8
+     1>C:\GARTS\GARTS\Debug\Appollo.exe : fatal error LNK1120: 1 unresolved externals
+     1>Done Building Project "C:\GARTS\GARTS\Appollo\Appollo.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.14

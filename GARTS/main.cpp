@@ -4,27 +4,25 @@
 int main(int argc, char* args[])
 {
 	//Start SDL
-	if (!init())
-	{
-		printf("FAILED TO INITIALIZE!\n");
-	}
-	else
-	{
+	//if (!appollo.Init(SCREEN_WIDTH, SCREEN_HEIGHT))
+	//{
+	//	printf("FAILED TO INITIALIZE!\n");
+	//}
+	
+	//else
+	//{
 		//Load media
-		if (!loadMedia())
-		{
-			printf("Failed to load media!\n");
-		}
-		else
-		{
+		gHelloWorld = appollo.apfFileLoader->LoadBMP("C:/Users/Sam/Pictures/lol.bmp");
+		appollo.apfRenderer->renderSprite(gHelloWorld, gScreenSurface, gWindow);
+	
 			//Apply image
-			SDL_BlitSurface(gHelloWorld, NULL, gScreenSurface, NULL);
+			//SDL_BlitSurface(gHelloWorld, NULL, gScreenSurface, NULL);
 			//Update surface
-			SDL_UpdateWindowSurface(gWindow);
+			//SDL_UpdateWindowSurface(gWindow);
 			//Wait two secs
 			SDL_Delay(2000);
-		}
-	}
+		
+	//}
 	
 	close();
 	return 0;
