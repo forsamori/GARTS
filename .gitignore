@@ -42,6 +42,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+GARTS/Debug/
 
 *_i.c
 *_p.c
@@ -72,12 +73,3 @@ GARTS.sdf
 GARTS.opensdf
 GARTS.sdf
 .vs/GARTS/v14/.suo
-*.tlog
-*.obj
-GARTS/Debug/vc140.idb
-*.tlog
-GARTS/Debug/GARTS.tlog/link.read.1.tlog
-*.tlog
-GARTS/Debug/GARTS.tlog/CL.read.1.tlog
-Debug/GARTS.pdb
-*.pdb
