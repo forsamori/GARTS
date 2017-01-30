@@ -16,6 +16,15 @@
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
+//KeyPress definitions
+enum ENUM_KEYPRESS
+{
+	KEYPRESS_UP,
+	KEYPRESS_DOWN,
+	KEYPRESS_LEFT,
+	KEYPRESS_RIGHT
+};
+
 int main();
 
 //Initialise App: Set up SDL and create Window
@@ -26,6 +35,10 @@ bool loadMedia();
 
 //Frees up media and shuts down SDL
 void close();
+
+//Poll and react to inputs here
+void Input();
+
 
 //Helper Debug Function. Prints string to Debug output
 void Debug_String(char* string);

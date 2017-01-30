@@ -15,16 +15,7 @@ int main(int argc, char* args[])
 		//REMEMBER: Have the update and input functions act sensibly. Take input before...
 		//...update, which must be called second last before draw.
 		//TODO: Add input polling here
-		//Poll for events
-		//While events available
-		while (SDL_PollEvent(&_event) != 0)
-		{
-			if (_event.type == SDL_QUIT)
-			{
-				quit = true;
-				Debug_String("Quitting");
-			}
-		}
+		Input();
 
 
 		//TODO: Add draw function, add relevant draws there
@@ -110,4 +101,36 @@ void Debug_String(char* string)
 	out_stream << string;
 	out_stream << "\n\n";
 	OutputDebugStringW(out_stream.str().c_str());
+}
+
+void Input()
+{
+	//Poll for events
+	//While events available
+	while (SDL_PollEvent(&_event) != 0)
+	{
+		if (_event.type == SDL_QUIT)
+		{
+			quit = true;
+			Debug_String("Quitting");
+		}
+		else if (_event.type == SDL_KEYDOWN)
+		{
+			switch (_event.key.keysym.sym)
+			{
+			case SDLK_UP:
+				Debug_String("Pressed: ARROW_UP");
+				break;
+			case SDLK_DOWN:
+				Debug_String("Pressed: ARROW_DOWN");
+				break;
+			case SDLK_LEFT:
+				Debug_String("Pressed: ARROW_LEFT");
+				break;
+			case SDLK_RIGHT:
+				Debug_String("Pressed: ARROW_RIGHT");
+				break;
+			}
+		}
+	}
 }
