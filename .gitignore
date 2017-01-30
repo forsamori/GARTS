@@ -67,3 +67,5 @@ bld/
 *.pidb
 *.svclog
 *.scc
+GARTS.sdf
+*.suo
