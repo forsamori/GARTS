@@ -69,3 +69,6 @@ bld/
 *.scc
 GARTS.sdf
 *.suo
+GARTS.opensdf
+GARTS.sdf
+.vs/GARTS/v14/.suo

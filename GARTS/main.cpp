@@ -1,30 +1,28 @@
-//#include "SDL.h"
 #include "main.h"
 
 int main(int argc, char* args[])
 {
 	//Start SDL
 	init();
-	//{
-	//	printf("FAILED TO INITIALIZE!\n");
-	//}
 	
-	//else
-	//{
-		//Load media
+	//Load media
 	loadMedia();
-		//gHelloWorld = appollo.apfFileLoader->LoadBMP("C:/Users/Sam/Pictures/lol.bmp");
-		//appollo.apfRenderer->renderSprite(gHelloWorld, gScreenSurface, gWindow);
-	
-			//Apply image
-			SDL_BlitSurface(gHelloWorld, NULL, gScreenSurface, NULL);
-			//Update surface
-			SDL_UpdateWindowSurface(gWindow);
-			//Wait two secs
-			SDL_Delay(2000);
+
+	//REMEMBER: Have the update and input functions act sensibly. Take input before...
+	//...update, which must be called second last before draw.
+	//TODO: Add input polling here
+
+	//TODO: Add draw function, add relevant draws there
+	//Apply image
+	SDL_BlitSurface(gHelloWorld, NULL, gScreenSurface, NULL);
+	//Update surface
+	SDL_UpdateWindowSurface(gWindow);
+	//Wait two secs
+	SDL_Delay(2000);
+
+	//Do necessary clean-up (shouldn't be done often, but keeping it all...
+	//...in one place will be easier for maintenance.
 		
-	//}
-	
 	close();
 	return 0;
 }
@@ -62,8 +60,6 @@ bool loadMedia()
 {
 	//Loading success
 	bool success = true;
-
-	
 
 	//Load splash image
 	gHelloWorld = SDL_LoadBMP("C:/Users/Sam/Pictures/lol.bmp");
