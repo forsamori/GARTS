@@ -8,27 +8,46 @@ int main(int argc, char* args[])
 	//Load media
 	loadMedia();
 
-	//REMEMBER: Have the update and input functions act sensibly. Take input before...
-	//...update, which must be called second last before draw.
-	//TODO: Add input polling here
 
-	//TODO: Add draw function, add relevant draws there
-	//Apply image
-	SDL_BlitSurface(gHelloWorld, NULL, gScreenSurface, NULL);
-	//Update surface
-	SDL_UpdateWindowSurface(gWindow);
-	//Wait two secs
-	SDL_Delay(2000);
+	//Main loop
+	while (!quit)
+	{
+		//REMEMBER: Have the update and input functions act sensibly. Take input before...
+		//...update, which must be called second last before draw.
+		//TODO: Add input polling here
+		//Poll for events
+		//While events available
+		while (SDL_PollEvent(&_event) != 0)
+		{
+			if (_event.type == SDL_QUIT)
+			{
+				quit = true;
+				Debug_String("Quitting");
+			}
+		}
 
-	//Do necessary clean-up (shouldn't be done often, but keeping it all...
-	//...in one place will be easier for maintenance.
-		
+
+		//TODO: Add draw function, add relevant draws there
+		//Apply image
+		SDL_BlitSurface(gHelloWorld, NULL, gScreenSurface, NULL);
+		//Update surface
+		SDL_UpdateWindowSurface(gWindow);
+		//Wait two secs
+		//SDL_Delay(2000);
+
+		//Do necessary clean-up (shouldn't be done often, but keeping it all...
+		//...in one place will be easier for maintenance.
+	}
 	close();
 	return 0;
 }
 
 bool init()
 {
+
+	//Control vars
+	quit = false;
+
 	//Success Flag
 	bool success = true;
 
@@ -83,4 +102,12 @@ void close()
 
 	//Quit SDL subsystems
 	SDL_Quit();
+}
+
+void Debug_String(char* string)
+{
+	std::wostringstream out_stream;
+	out_stream << string;
+	out_stream << "\n\n";
+	OutputDebugStringW(out_stream.str().c_str());
 }

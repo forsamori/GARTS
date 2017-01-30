@@ -7,8 +7,10 @@
 #define _MAIN_H
 
 #include "SDL.h"
-
+#include <windows.h> //OUTPUTDEBUGSTRING function
 #include <stdio.h>
+#include <iostream>
+#include <sstream>
 
 //Const definitions
 const int SCREEN_WIDTH = 640;
@@ -25,8 +27,14 @@ bool loadMedia();
 //Frees up media and shuts down SDL
 void close();
 
-//Declare SDL_ vars
+//Helper Debug Function. Prints string to Debug output
+void Debug_String(char* string);
 
+//Declare SDL_ vars
+SDL_Event _event;
+
+//Declare control vars
+bool quit;
 // --- Global Variables ---
 
 //Render Window
