@@ -7,12 +7,9 @@
 #ifndef _MAIN_H
 #define _MAIN_H
 
-//#include "SDL.h"
-#include "Appollo.h"
+#include "SDL.h"
+
 #include <stdio.h>
-
-Appollo appollo;
-
 
 //Const definitions
 const int SCREEN_WIDTH = 640;
