@@ -1,4 +1,4 @@
-//IMPORTANT: The following implementation is currently set up to...
+//IMPORTANT (DONE, TEST): The following implementation is currently set up to...
 //...render using software on the CPU. Swap to GPU to allow...
 //...CPU to concentrate on game-logic and GA...
 
@@ -12,9 +12,12 @@
 #include <iostream>
 #include <sstream>
 
+//Custom class
+#include "texture.h"
+
 //Const definitions
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 1024;
+const int SCREEN_HEIGHT = 768;
 
 //KeyPress definitions
 enum ENUM_KEYPRESS
@@ -43,6 +46,8 @@ void Input();
 //Helper Debug Function. Prints string to Debug output
 void Debug_String(char* string);
 
+int Lerp(float t, int a, int b);
+
 //Declare SDL_ vars
 SDL_Event _event;
 
@@ -57,7 +62,14 @@ SDL_Window* gWindow = NULL;
 SDL_Surface* gScreenSurface = NULL;
 
 //Image to Render
-SDL_Surface* gHelloWorld = NULL;
+SDL_Surface* gBackground = NULL;
+
+//Title image
+Texture gTitle;
+
+Texture tBackground;
+
+SDL_Renderer* gRenderer = NULL;
 
 // --- END Global Variables ---
 

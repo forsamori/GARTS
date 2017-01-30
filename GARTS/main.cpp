@@ -9,6 +9,13 @@ int main(int argc, char* args[])
 	loadMedia();
 
 
+	gTitle = Texture("..//media/title.bmp", gRenderer);
+	gTitle.SetX(SCREEN_WIDTH / 2);
+	gTitle.SetY(50);
+
+	tBackground = Texture("..//media/background.bmp", gRenderer);
+	float lerpval = 0.0f;
+	bool lerpreverse = false;
 	//Main loop
 	while (!quit)
 	{
@@ -17,12 +24,44 @@ int main(int argc, char* args[])
 		//TODO: Add input polling here
 		Input();
 
+		//Clear screen
+		SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+		SDL_RenderClear(gRenderer);
+
+		tBackground.Render();
+
+		if (lerpval <= 1.0f && lerpreverse == false)
+		{
+			gTitle.SetAngle(Lerp(lerpval, -10, 10));
+			lerpval += 0.001f;
+		}
+		else
+		{
+			lerpreverse = true;
+		}
+
+		if (lerpval >= 0.0f && lerpreverse == true)
+		{
+			gTitle.SetAngle(Lerp(lerpval, -10, 10));
+			lerpval -= 0.001f;
+		}
+		else
+		{
+			lerpreverse = false;
+		}
+		
+
+		gTitle.Render();
+
+		SDL_RenderPresent(gRenderer);
+
+
 
 		//TODO: Add draw function, add relevant draws there
 		//Apply image
-		SDL_BlitSurface(gHelloWorld, NULL, gScreenSurface, NULL);
+		//SDL_BlitSurface(gBackground, NULL, gScreenSurface, NULL);
 		//Update surface
-		SDL_UpdateWindowSurface(gWindow);
+		//SDL_UpdateWindowSurface(gWindow);
 		//Wait two secs
 		//SDL_Delay(2000);
 
@@ -60,7 +99,15 @@ bool init()
 		else
 		{
 			//Get Window Surface so we can draw on the window.
-			gScreenSurface = SDL_GetWindowSurface(gWindow);
+			//gScreenSurface = SDL_GetWindowSurface(gWindow);
+
+			//Create a renderer that will use the graphics card.
+			gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
+			if (gRenderer == NULL)
+			{
+				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
+				success = false;
+			}
 		}
 	}
 	return success;
@@ -72,20 +119,29 @@ bool loadMedia()
 	bool success = true;
 
 	//Load splash image
-	gHelloWorld = SDL_LoadBMP("C:/Users/Sam/Pictures/lol.bmp");
-	if (gHelloWorld == NULL) //Unable to load image
+	gBackground = SDL_LoadBMP("..//media/background.bmp");
+	if (gBackground == NULL) //Unable to load image
 	{
-		printf("Unable to load image %s! SDL_ERROR: %s\n", "C:/Users/Sam/Pictures/lol.bmp", SDL_GetError());
+		printf("Unable to load image %s! SDL_ERROR: %s\n", "..//media/background.bmp", SDL_GetError());
 		success = false;
 	}
+
+	//Load title image
+	//gTitle = SDL_LoadBMP("..//media/title.bmp");
+	//if (gBackground == NULL)
+	//{
+	//	printf("Unable to load image %s! SDL_ERROR: %s\n", "..//media/title.bmp", SDL_GetError());
+	//	success = false;
+	//}
+
 	return success;
 }
 
 void close()
 {
 	//Deallocate surface
-	SDL_FreeSurface(gHelloWorld);
-	gHelloWorld = NULL;
+	SDL_FreeSurface(gBackground);
+	gBackground = NULL;
 
 	//Destroy window
 	SDL_DestroyWindow(gWindow);
@@ -101,6 +157,12 @@ void Debug_String(char* string)
 	out_stream << string;
 	out_stream << "\n\n";
 	OutputDebugStringW(out_stream.str().c_str());
+}
+
+int Lerp(float t, int a, int b)
+{
+	//return (1 - t)*a + t*b;
+	return (a + t*(b - a));
 }
 
 void Input()

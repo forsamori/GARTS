@@ -1,2 +1,3 @@
 ﻿  main.cpp
+m:\github\garts\main.cpp(165): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
   GARTS.vcxproj -> M:\GitHub\Debug\GARTS.exe
