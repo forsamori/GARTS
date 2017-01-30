@@ -73,3 +73,5 @@ GARTS.sdf
 GARTS.opensdf
 GARTS.sdf
 .vs/GARTS/v14/.suo
+GARTS/Debug/GARTS.tlog/
+*.tlog
