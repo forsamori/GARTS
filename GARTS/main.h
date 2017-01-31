@@ -14,6 +14,7 @@
 
 //Custom class
 #include "texture.h"
+#include "Sprite.h"
 
 //Const definitions
 const int SCREEN_WIDTH = 1024;
@@ -68,6 +69,8 @@ SDL_Surface* gBackground = NULL;
 Texture gTitle;
 
 Texture tBackground;
+
+Sprite sMan;
 
 SDL_Renderer* gRenderer = NULL;
 
