@@ -1,22 +1,34 @@
-//The following implementation is currently set up to...
+//IMPORTANT (DONE, TEST): The following implementation is currently set up to...
 //...render using software on the CPU. Swap to GPU to allow...
 //...CPU to concentrate on game-logic and GA...
 
-//Abstract underlying system functions into APOLLO.h, class should be named afw (ApolloFrameWork)
 
 #ifndef _MAIN_H
 #define _MAIN_H
 
-//#include "SDL.h"
-#include "Appollo.h"
+#include "SDL.h"
+#include <windows.h> //OUTPUTDEBUGSTRING function
 #include <stdio.h>
+#include <iostream>
+#include <sstream>
 
-Appollo appollo;
-
+//Custom class
+#include "texture.h"
+#include "Sprite.h"
+#include "helper_functions.h"
 
 //Const definitions
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 1024;
+const int SCREEN_HEIGHT = 768;
+
+//KeyPress definitions
+enum ENUM_KEYPRESS
+{
+	KEYPRESS_UP,
+	KEYPRESS_DOWN,
+	KEYPRESS_LEFT,
+	KEYPRESS_RIGHT
+};
 
 int main();
 
@@ -29,8 +41,24 @@ bool loadMedia();
 //Frees up media and shuts down SDL
 void close();
 
-//Declare SDL_ vars
+//Poll and react to inputs here
+void Input();
 
+void Update();
+
+void Render();
+
+
+//Helper Debug Function. Prints string to Debug output
+//void Debug_String(char* string);
+
+//int Lerp(float t, int a, int b);
+
+//Declare SDL_ vars
+SDL_Event _event;
+
+//Declare control vars
+bool quit;
 // --- Global Variables ---
 
 //Render Window
@@ -40,7 +68,16 @@ SDL_Window* gWindow = NULL;
 SDL_Surface* gScreenSurface = NULL;
 
 //Image to Render
-SDL_Surface* gHelloWorld = NULL;
+SDL_Surface* gBackground = NULL;
+
+//Title image
+Texture gTitle;
+
+Texture tBackground;
+
+Sprite sMan;
+
+SDL_Renderer* gRenderer = NULL;
 
 // --- END Global Variables ---
 
