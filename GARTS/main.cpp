@@ -18,60 +18,18 @@ int main(int argc, char* args[])
 	sMan = Sprite("..//media/man.bmp", gRenderer);
 
 
-	float lerpval = 0.0f;
-	bool lerpreverse = false;
+	
 	//Main loop
 	while (!quit)
 	{
-		//REMEMBER: Have the update and input functions act sensibly. Take input before...
-		//...update, which must be called second last before draw.
-		//TODO: Add input polling here
+		//Poll, process input.
 		Input();
-
-		sMan.Update();
-
-		//Clear screen
-		SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
-		SDL_RenderClear(gRenderer);
-
-		tBackground.Render();
-
-		if (lerpval <= 1.0f && lerpreverse == false)
-		{
-			gTitle.SetAngle(Lerp(lerpval, -10, 10));
-			lerpval += 0.001f;
-		}
-		else
-		{
-			lerpreverse = true;
-		}
-
-		if (lerpval >= 0.0f && lerpreverse == true)
-		{
-			gTitle.SetAngle(Lerp(lerpval, -10, 10));
-			lerpval -= 0.001f;
-		}
-		else
-		{
-			lerpreverse = false;
-		}
 		
+		//Update gameobjects/perform logic.
+		Update();
 
-		gTitle.Render();
-
-		sMan.Render();
-
-		SDL_RenderPresent(gRenderer);
-
-
-
-		//TODO: Add draw function, add relevant draws there
-		//Apply image
-		//SDL_BlitSurface(gBackground, NULL, gScreenSurface, NULL);
-		//Update surface
-		//SDL_UpdateWindowSurface(gWindow);
-		//Wait two secs
-		//SDL_Delay(2000);
+		//Render all renderable textures/sprites/objects.
+		Render();
 
 		//Do necessary clean-up (shouldn't be done often, but keeping it all...
 		//...in one place will be easier for maintenance.
@@ -143,6 +101,53 @@ bool loadMedia()
 	//}
 
 	return success;
+}
+
+void Update()
+{
+	sMan.Update();
+
+	//Prevent redeclaration in loop using STATIC
+	static float lerpval = 0.0f;
+	static bool lerpreverse = false;
+
+	if (lerpval <= 1.0f && lerpreverse == false)
+	{
+		gTitle.SetAngle(Lerp(lerpval, -10, 10));
+		lerpval += 0.001f;
+	}
+	else
+	{
+		lerpreverse = true;
+	}
+
+	if (lerpval >= 0.0f && lerpreverse == true)
+	{
+		gTitle.SetAngle(Lerp(lerpval, -10, 10));
+		lerpval -= 0.001f;
+	}
+	else
+	{
+		lerpreverse = false;
+	}
+}
+
+void Render()
+{
+	//Clear screen
+	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_RenderClear(gRenderer);
+
+	//Assets to render
+	tBackground.Render();
+
+	gTitle.Render();
+
+	sMan.Render();
+	//----
+
+	//Render using desired renderer
+	SDL_RenderPresent(gRenderer);
 }
 
 void close()

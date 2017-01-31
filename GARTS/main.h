@@ -43,6 +43,10 @@ void close();
 //Poll and react to inputs here
 void Input();
 
+void Update();
+
+void Render();
+
 
 //Helper Debug Function. Prints string to Debug output
 void Debug_String(char* string);
