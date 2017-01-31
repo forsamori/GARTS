@@ -14,6 +14,10 @@ int main(int argc, char* args[])
 	gTitle.SetY(50);
 
 	tBackground = Texture("..//media/background.bmp", gRenderer);
+
+	sMan = Sprite("..//media/man.bmp", gRenderer);
+
+
 	float lerpval = 0.0f;
 	bool lerpreverse = false;
 	//Main loop
@@ -23,6 +27,8 @@ int main(int argc, char* args[])
 		//...update, which must be called second last before draw.
 		//TODO: Add input polling here
 		Input();
+
+		sMan.Update();
 
 		//Clear screen
 		SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -52,6 +58,8 @@ int main(int argc, char* args[])
 		
 
 		gTitle.Render();
+
+		sMan.Render();
 
 		SDL_RenderPresent(gRenderer);
 
@@ -182,15 +190,19 @@ void Input()
 			{
 			case SDLK_UP:
 				Debug_String("Pressed: ARROW_UP");
+				sMan.SetY(sMan.GetY() - 1);
 				break;
 			case SDLK_DOWN:
 				Debug_String("Pressed: ARROW_DOWN");
+				sMan.SetY(sMan.GetY() + 1);
 				break;
 			case SDLK_LEFT:
 				Debug_String("Pressed: ARROW_LEFT");
+				sMan.SetX(sMan.GetX() - 1);
 				break;
 			case SDLK_RIGHT:
 				Debug_String("Pressed: ARROW_RIGHT");
+				sMan.SetX(sMan.GetX() + 1);
 				break;
 			}
 		}
