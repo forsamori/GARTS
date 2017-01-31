@@ -15,6 +15,7 @@
 //Custom class
 #include "texture.h"
 #include "Sprite.h"
+#include "helper_functions.h"
 
 //Const definitions
 const int SCREEN_WIDTH = 1024;
@@ -49,9 +50,9 @@ void Render();
 
 
 //Helper Debug Function. Prints string to Debug output
-void Debug_String(char* string);
+//void Debug_String(char* string);
 
-int Lerp(float t, int a, int b);
+//int Lerp(float t, int a, int b);
 
 //Declare SDL_ vars
 SDL_Event _event;

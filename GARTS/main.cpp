@@ -164,20 +164,6 @@ void close()
 	SDL_Quit();
 }
 
-void Debug_String(char* string)
-{
-	std::wostringstream out_stream;
-	out_stream << string;
-	out_stream << "\n\n";
-	OutputDebugStringW(out_stream.str().c_str());
-}
-
-int Lerp(float t, int a, int b)
-{
-	//return (1 - t)*a + t*b;
-	return (a + t*(b - a));
-}
-
 void Input()
 {
 	//Poll for events

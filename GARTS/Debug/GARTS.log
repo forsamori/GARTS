@@ -1,9 +1,12 @@
-﻿Build started 31/01/2017 13:43:28.
+﻿Build started 31/01/2017 13:51:33.
      1>Project "C:\GARTS\GARTS\GARTS\GARTS.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /IC:\GARTS\GARTS\Appollo /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /IC:\GARTS\GARTS\Appollo /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp Sprite.cpp texture.cpp
+         texture.cpp
+         Sprite.cpp
          main.cpp
-     1>c:\garts\garts\garts\main.cpp(177): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+     1>c:\garts\garts\garts\helper_functions.h(18): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\GARTS\GARTS\Debug\GARTS.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\GARTS\GARTS\Debug\GARTS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\GARTS\GARTS\Debug\GARTS.lib" /MACHINE:X86 Debug\main.obj
          Debug\Sprite.obj
@@ -13,4 +16,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.87
+Time Elapsed 00:00:01.58
