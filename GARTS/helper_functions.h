@@ -4,6 +4,18 @@
 #include <windows.h>
 #include <sstream>
 
+struct vec2
+{
+	int x;
+	int y;
+};
+
+struct vec2f
+{
+	float x;
+	float y;
+};
+
 inline void Debug_String(char* string)
 {
 	std::wostringstream out_stream;
@@ -17,5 +29,6 @@ inline int Lerp(float t, int a, int b)
 	//return (1 - t)*a + t*b;
 	return (a + t*(b - a));
 }
+
 
 #endif
