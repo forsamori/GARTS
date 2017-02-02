@@ -2,6 +2,18 @@
 //...render using software on the CPU. Swap to GPU to allow...
 //...CPU to concentrate on game-logic and GA...
 
+//TODO
+/*
+GameObject class
+GameObject collision detection AA->BB bounding box
+Mouse click input
+Mouse drag input
+GameObject move-to-point
+GameObject health
+
+//SEE MOVE TO POINT
+*/
+
 
 #ifndef _MAIN_H
 #define _MAIN_H
@@ -15,6 +27,7 @@
 //Custom class
 #include "texture.h"
 #include "Sprite.h"
+#include "GameObject.h"
 #include "helper_functions.h"
 
 //Const definitions
@@ -76,6 +89,8 @@ Texture gTitle;
 Texture tBackground;
 
 Sprite sMan;
+
+GameObject test_object;
 
 SDL_Renderer* gRenderer = NULL;
 

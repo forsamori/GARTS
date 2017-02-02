@@ -53,6 +53,7 @@ private:
 	Sprite sprite;
 	int gotoX;
 	int gotoY;
+	int gotoAccuracy;
 
 	vec2f velocity;
 

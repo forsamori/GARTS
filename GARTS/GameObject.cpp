@@ -9,6 +9,9 @@ GameObject::GameObject()
 	height = 0;
 	gotoX = NULL;
 	gotoY = NULL;
+
+	//1 pixel accuracy
+	gotoAccuracy = 1;
 	
 	velocity.x = 0;
 	velocity.y = 0;
@@ -25,6 +28,8 @@ GameObject::GameObject(std::string tex_path, SDL_Renderer* _renderer)
 	height = 0;
 	gotoX = NULL;
 	gotoY = NULL;
+
+	gotoAccuracy = 1;
 
 	velocity.x = 0;
 	velocity.y = 0;
@@ -113,6 +118,13 @@ void GameObject::Update()
 	xPos += velocity.x;
 	yPos += velocity.y;
 
+	if (xPos < (gotoX + gotoAccuracy) && xPos > (gotoX - gotoAccuracy) &&
+		yPos < (gotoY + gotoAccuracy) && yPos > (gotoY - gotoAccuracy))
+	{
+		velocity.x = 0;
+		velocity.y = 0;
+	}
+
 	//Update sprite's vars
 	sprite.SetAngle(angle);
 	sprite.SetX(xPos);
@@ -143,7 +155,7 @@ void GameObject::MoveToPoint(int _x, int _y)
 	int diffX = gotoX - xPos;
 	int diffY = gotoY - yPos;
 	//Change this to float.
-	int angleApproach = atan2(diffY, diffX);
+	float angleApproach = atan2(diffY, diffX);
 
 	velocity.x = speed * cos(angleApproach);
 	velocity.y = speed * sin(angleApproach);

@@ -17,6 +17,8 @@ int main(int argc, char* args[])
 
 	sMan = Sprite("..//media/man.bmp", gRenderer);
 
+	test_object = GameObject("..//media/test.bmp", gRenderer);
+	test_object.SetSpeed(0.02f);
 
 	
 	//Main loop
@@ -106,6 +108,7 @@ bool loadMedia()
 void Update()
 {
 	sMan.Update();
+	test_object.Update();
 
 	//Prevent redeclaration in loop using STATIC
 	static float lerpval = 0.0f;
@@ -144,6 +147,8 @@ void Render()
 	gTitle.Render();
 
 	sMan.Render();
+
+	test_object.Render();
 	//----
 
 	//Render using desired renderer
@@ -181,21 +186,29 @@ void Input()
 			{
 			case SDLK_UP:
 				Debug_String("Pressed: ARROW_UP");
-				sMan.SetY(sMan.GetY() - 1);
+				//sMan.SetY(sMan.GetY() - 1);
+				test_object.SetY(test_object.GetY() - 1);
 				break;
 			case SDLK_DOWN:
 				Debug_String("Pressed: ARROW_DOWN");
-				sMan.SetY(sMan.GetY() + 1);
+				//sMan.SetY(sMan.GetY() + 1);
+				test_object.SetY(test_object.GetY() + 1);
 				break;
 			case SDLK_LEFT:
 				Debug_String("Pressed: ARROW_LEFT");
-				sMan.SetX(sMan.GetX() - 1);
+				//sMan.SetX(sMan.GetX() - 1);
+				test_object.SetX(test_object.GetX() - 1);
 				break;
 			case SDLK_RIGHT:
 				Debug_String("Pressed: ARROW_RIGHT");
-				sMan.SetX(sMan.GetX() + 1);
+				//sMan.SetX(sMan.GetX() + 1);
+				test_object.SetX(test_object.GetX() + 1);
 				break;
 			}
+		}
+		else if (_event.type == SDL_MOUSEBUTTONDOWN)
+		{
+			test_object.MoveToPoint(_event.button.x, _event.button.y);
 		}
 	}
 }
