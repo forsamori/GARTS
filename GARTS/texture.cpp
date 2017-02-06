@@ -12,8 +12,8 @@ Texture::Texture()
 
 Texture::Texture(std::string _path, SDL_Renderer* _renderer)
 {
-	width = 0;
-	height = 0;
+	//width = 0;
+	//height = 0;
 	xPos = 0;
 	yPos = 0;
 	texture = NULL;
@@ -21,6 +21,8 @@ Texture::Texture(std::string _path, SDL_Renderer* _renderer)
 	renderer = _renderer;
 	angle = 0;
 	Load();
+	width = GetWidth();
+	height = GetHeight();
 }
 
 Texture::~Texture()

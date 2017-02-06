@@ -19,6 +19,8 @@ int main(int argc, char* args[])
 
 	test_object = GameObject("..//media/test.bmp", gRenderer);
 	test_object.SetSpeed(0.02f);
+	//Add to GameObject member vector.
+	gameObjects.push_back(test_object);
 
 	
 	//Main loop
@@ -108,7 +110,12 @@ bool loadMedia()
 void Update()
 {
 	sMan.Update();
-	test_object.Update();
+	//test_object.Update();
+	int vecSize = gameObjects.size();
+	for (int i = 0; i < vecSize; i++)
+	{
+		gameObjects.at(i).Update();
+	}
 
 	//Prevent redeclaration in loop using STATIC
 	static float lerpval = 0.0f;
@@ -148,7 +155,11 @@ void Render()
 
 	sMan.Render();
 
-	test_object.Render();
+	int vecSize = gameObjects.size();
+	for (int i = 0; i < vecSize; i++)
+	{
+		gameObjects.at(i).Render();
+	}
 	//----
 
 	//Render using desired renderer
@@ -187,28 +198,45 @@ void Input()
 			case SDLK_UP:
 				Debug_String("Pressed: ARROW_UP");
 				//sMan.SetY(sMan.GetY() - 1);
-				test_object.SetY(test_object.GetY() - 1);
+				if (!selection.GetSelection()->empty())
+				{	
+					GameObject* obj = selection.GetSelection()->front();
+					obj->SetY(obj->GetY() - 1);
+				}
 				break;
 			case SDLK_DOWN:
 				Debug_String("Pressed: ARROW_DOWN");
 				//sMan.SetY(sMan.GetY() + 1);
-				test_object.SetY(test_object.GetY() + 1);
+				if (!selection.GetSelection()->empty())
+				{
+					GameObject* obj = selection.GetSelection()->front();
+					obj->SetY(obj->GetY() + 1);
+				}
 				break;
 			case SDLK_LEFT:
 				Debug_String("Pressed: ARROW_LEFT");
 				//sMan.SetX(sMan.GetX() - 1);
-				test_object.SetX(test_object.GetX() - 1);
+				if (!selection.GetSelection()->empty())
+				{
+					GameObject* obj = selection.GetSelection()->front();
+					obj->SetX(obj->GetX() - 1);
+				}
 				break;
 			case SDLK_RIGHT:
 				Debug_String("Pressed: ARROW_RIGHT");
 				//sMan.SetX(sMan.GetX() + 1);
-				test_object.SetX(test_object.GetX() + 1);
+				if (!selection.GetSelection()->empty())
+				{
+					GameObject* obj = selection.GetSelection()->front();
+					obj->SetX(obj->GetX() + 1);
+				}
 				break;
 			}
 		}
 		else if (_event.type == SDL_MOUSEBUTTONDOWN)
 		{
-			test_object.MoveToPoint(_event.button.x, _event.button.y);
+			selection.Select(_event.button.x, _event.button.y, &gameObjects);
+			//test_object.MoveToPoint(_event.button.x, _event.button.y);
 		}
 	}
 }

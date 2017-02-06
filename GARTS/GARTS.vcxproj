@@ -134,12 +134,14 @@
   <ItemGroup>
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Selector.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="helper_functions.h" />
+    <ClInclude Include="Selector.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="main.h" />

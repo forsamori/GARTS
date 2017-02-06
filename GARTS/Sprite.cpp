@@ -40,6 +40,16 @@ void Sprite::SetY(int _y)
 	yPos = _y;
 }
 
+int Sprite::GetHeight()
+{
+	return tex.GetHeight();
+}
+
+int Sprite::GetWidth()
+{
+	return tex.GetWidth();
+}
+
 int Sprite::GetAngle()
 {
 	return angle;

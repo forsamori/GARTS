@@ -15,6 +15,9 @@ public:
 	void SetX(int _x);
 	void SetY(int _y);
 
+	int GetHeight();
+	int GetWidth();
+
 	int GetAngle();
 	void SetAngle(int _angle);
 

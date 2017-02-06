@@ -29,6 +29,7 @@ GameObject health
 #include "Sprite.h"
 #include "GameObject.h"
 #include "helper_functions.h"
+#include "Selector.h"
 
 //Const definitions
 const int SCREEN_WIDTH = 1024;
@@ -93,6 +94,10 @@ Sprite sMan;
 GameObject test_object;
 
 SDL_Renderer* gRenderer = NULL;
+
+Selector selection;
+
+std::vector<GameObject> gameObjects;
 
 // --- END Global Variables ---
 

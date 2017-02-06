@@ -36,6 +36,8 @@ GameObject::GameObject(std::string tex_path, SDL_Renderer* _renderer)
 
 	speed = 0;
 	sprite = Sprite(tex_path, _renderer);
+	width = sprite.GetWidth();
+	height = sprite.GetHeight();
 }
 
 GameObject::~GameObject()
