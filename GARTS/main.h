@@ -92,12 +92,19 @@ Texture tBackground;
 Sprite sMan;
 
 GameObject test_object;
+GameObject test_object2;
+GameObject test_object3;
 
 SDL_Renderer* gRenderer = NULL;
 
 Selector selection;
 
 std::vector<GameObject> gameObjects;
+
+bool mouseDown;
+
+vec2f clickStart;
+vec2f clickCurrent;
 
 // --- END Global Variables ---
 

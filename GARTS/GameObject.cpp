@@ -193,5 +193,5 @@ void GameObject::DrawBox()
 	//SDL_RenderClear(renderer);
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
 	SDL_RenderDrawLines(renderer, points, 5);
-	SDL_RenderPresent(renderer);
+	//SDL_RenderPresent(renderer);
 }

@@ -1,3 +1,10 @@
-﻿  Selector.cpp
+﻿  GameObject.cpp
 m:\github\garts\helper_functions.h(30): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+m:\github\garts\gameobject.cpp(134): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+m:\github\garts\gameobject.cpp(135): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+m:\github\garts\gameobject.cpp(174): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+m:\github\garts\gameobject.cpp(175): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+m:\github\garts\gameobject.cpp(177): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+m:\github\garts\gameobject.cpp(191): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+m:\github\garts\gameobject.cpp(191): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   GARTS.vcxproj -> M:\GitHub\Debug\GARTS.exe

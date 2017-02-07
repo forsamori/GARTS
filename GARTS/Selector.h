@@ -16,6 +16,7 @@ public:
 
 	std::vector<GameObject*>* GetSelection();
 	void Select(int _x, int _y, std::vector<GameObject>* _objectsVec);
+	std::vector<GameObject*> BoxSelect(vec2f startCoord, vec2f endCoord, std::vector<GameObject>* _objectsVec);
 	GameObject* MouseCollision(int _x, int _y, std::vector<GameObject>* _objectsVec);
 	void ClearSelection(); //Possibly unnecessary. Single-line function.
 

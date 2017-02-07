@@ -19,10 +19,26 @@ int main(int argc, char* args[])
 
 	test_object = GameObject("..//media/test.bmp", gRenderer);
 	test_object.SetSpeed(0.02f);
+	test_object.SetX(100.0f);
+	test_object.SetY(50.0f);
 	//Add to GameObject member vector.
 	gameObjects.push_back(test_object);
 
-	
+	test_object2 = GameObject("..//media/test.bmp", gRenderer);
+	test_object2.SetSpeed(0.02f);
+	test_object2.SetX(500.0f);
+	test_object2.SetY(200.0f);
+	gameObjects.push_back(test_object2);
+
+	test_object3 = GameObject("..//media/test.bmp", gRenderer);
+	test_object3.SetSpeed(0.02f);
+	test_object3.SetX(300.0f);
+	test_object3.SetY(400.0f);
+	gameObjects.push_back(test_object3);
+
+
+
+
 	//Main loop
 	while (!quit)
 	{
@@ -162,6 +178,18 @@ void Render()
 	}
 	//----
 
+	if (mouseDown == true)
+	{
+		SDL_SetRenderDrawColor(gRenderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
+		SDL_Rect mouseRect;
+		mouseRect.x = clickStart.x;
+		mouseRect.y = clickStart.y;
+		mouseRect.w = clickCurrent.x - clickStart.x;
+		mouseRect.h = clickCurrent.y - clickStart.y;
+		SDL_RenderDrawRect(gRenderer, &mouseRect);
+		SDL_RenderPresent(gRenderer);
+	}
+
 	//Render using desired renderer
 	SDL_RenderPresent(gRenderer);
 }
@@ -235,8 +263,32 @@ void Input()
 		}
 		else if (_event.type == SDL_MOUSEBUTTONDOWN)
 		{
-			selection.Select(_event.button.x, _event.button.y, &gameObjects);
+			if (mouseDown == false)
+			{
+				clickStart.x = _event.button.x;
+				clickStart.y = _event.button.y;
+			}
+			mouseDown = true;
+			
+			clickCurrent.x = _event.button.x;
+			clickCurrent.y = _event.button.y;
+			//selection.Select(_event.button.x, _event.button.y, &gameObjects);
 			//test_object.MoveToPoint(_event.button.x, _event.button.y);
+		}
+		else if (_event.type == SDL_MOUSEBUTTONUP)
+		{
+			mouseDown = false;
+			selection.BoxSelect(clickStart, clickCurrent, &gameObjects);
+			Debug_String("Releasing MOUSE1");
+		}
+
+		if (mouseDown == true)
+		{
+			if (_event.type == SDL_MOUSEMOTION)
+			{
+				clickCurrent.x = _event.button.x;
+				clickCurrent.y = _event.button.y;
+			}
 		}
 	}
 }
