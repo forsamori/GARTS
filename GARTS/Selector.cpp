@@ -27,6 +27,7 @@ void Selector::Select(int _x, int _y, std::vector<GameObject>* _objectsVec)
 	}
 	else
 	{
+		obj->SelectObject();
 		selection.push_back(obj);
 	}
 
@@ -51,5 +52,9 @@ GameObject* Selector::MouseCollision(int _x, int _y, std::vector<GameObject>* _o
 
 void Selector::ClearSelection()
 {
+	for (int i = 0; i < selection.size(); i++)
+	{
+		selection.at(i)->DeselectObject();
+	}
 	selection.clear();
 }

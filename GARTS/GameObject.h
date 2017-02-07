@@ -35,12 +35,16 @@ public:
 
 	void Update();
 	void Render();
+	void DrawBox();
 
 	void AABBCollision(GameObject* AA, GameObject* BB);
 	void SphereCollision(GameObject* AA, GameObject* BB);
 
-	void MoveToPoint(int _x, int _y);
+	void SelectObject();
 
+	void DeselectObject();
+
+	void MoveToPoint(int _x, int _y);
 
 
 private:
@@ -54,6 +58,8 @@ private:
 	int gotoX;
 	int gotoY;
 	int gotoAccuracy;
+	SDL_Renderer* renderer;
+	bool selected;
 
 	vec2f velocity;
 

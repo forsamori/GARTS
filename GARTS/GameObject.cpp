@@ -12,7 +12,7 @@ GameObject::GameObject()
 
 	//1 pixel accuracy
 	gotoAccuracy = 1;
-	
+	selected = false;
 	velocity.x = 0;
 	velocity.y = 0;
 
@@ -30,6 +30,8 @@ GameObject::GameObject(std::string tex_path, SDL_Renderer* _renderer)
 	gotoY = NULL;
 
 	gotoAccuracy = 1;
+	renderer = _renderer;
+	selected = false;
 
 	velocity.x = 0;
 	velocity.y = 0;
@@ -74,7 +76,7 @@ void GameObject::SetY(float _y)
 	yPos = _y;
 }
 
-float GameObject::GetSpeed()
+float GameObject::GetSpeed() 
 {
 	return speed;
 }
@@ -139,6 +141,10 @@ void GameObject::Update()
 void GameObject::Render()
 {
 	sprite.Render();
+	if (selected == true)
+	{
+		DrawBox();
+	}
 }
 
 void GameObject::AABBCollision(GameObject* AA, GameObject* BB)
@@ -148,6 +154,17 @@ void GameObject::AABBCollision(GameObject* AA, GameObject* BB)
 void GameObject::SphereCollision(GameObject* AA, GameObject* BB)
 {
 }
+
+void GameObject::SelectObject() 
+{
+	selected = true;
+}
+
+void GameObject::DeselectObject()
+{
+	selected = false;
+}
+
 
 void GameObject::MoveToPoint(int _x, int _y)
 {
@@ -161,4 +178,20 @@ void GameObject::MoveToPoint(int _x, int _y)
 
 	velocity.x = speed * cos(angleApproach);
 	velocity.y = speed * sin(angleApproach);
+}
+
+void GameObject::DrawBox()
+{
+	SDL_Point points[5] = {
+		{xPos, yPos},
+		{xPos + width, yPos},
+		{xPos + width, yPos + height},
+		{xPos, yPos + height},
+		{xPos, yPos}
+	};
+
+	//SDL_RenderClear(renderer);
+	SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
+	SDL_RenderDrawLines(renderer, points, 5);
+	SDL_RenderPresent(renderer);
 }
