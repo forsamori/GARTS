@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Barracks.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Selector.cpp" />
@@ -139,12 +140,14 @@
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Barracks.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="helper_functions.h" />
     <ClInclude Include="Selector.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

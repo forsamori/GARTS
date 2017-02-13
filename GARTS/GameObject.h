@@ -33,7 +33,7 @@ public:
 	int GetAngle();
 	void SetAngle(int _angle);
 
-	void Update();
+	virtual void Update();
 	void Render();
 	void DrawBox();
 
@@ -41,10 +41,14 @@ public:
 	void SphereCollision(GameObject* AA, GameObject* BB);
 
 	void SelectObject();
-
+	bool IsSelected();
 	void DeselectObject();
 
 	void MoveToPoint(int _x, int _y);
+
+	void SetHealth(float _health);
+
+protected:
 
 
 private:
@@ -60,6 +64,8 @@ private:
 	int gotoAccuracy;
 	SDL_Renderer* renderer;
 	bool selected;
+
+	float health;
 
 	vec2f velocity;
 

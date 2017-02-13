@@ -11,6 +11,15 @@ Mouse drag input
 GameObject move-to-point
 GameObject health
 
+Once a building is selected, pop up health and build buttons.
+The button should be overlayed on top of the building for easy pressing.
+Treat it as a gameobject to prevent code-repetition.
+
+//It's dangerous to go alone: Read this for virtual function fun.
+//TODO:: Barracks update needs to be called. We want Barracks::Update to run first, then GameObject::Update. Read the below tutorial.
+http://www.cplusplus.com/doc/tutorial/polymorphism/
+
+
 //SEE MOVE TO POINT
 */
 
@@ -30,6 +39,7 @@ GameObject health
 #include "GameObject.h"
 #include "helper_functions.h"
 #include "Selector.h"
+#include "Barracks.h"
 
 //Const definitions
 const int SCREEN_WIDTH = 1024;

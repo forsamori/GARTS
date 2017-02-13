@@ -160,6 +160,14 @@ void GameObject::SelectObject()
 	selected = true;
 }
 
+bool GameObject::IsSelected()
+{
+	if (selected == true)
+		return true;
+	else
+		return false;
+}
+
 void GameObject::DeselectObject()
 {
 	selected = false;
@@ -178,6 +186,11 @@ void GameObject::MoveToPoint(int _x, int _y)
 
 	velocity.x = speed * cos(angleApproach);
 	velocity.y = speed * sin(angleApproach);
+}
+
+void GameObject::SetHealth(float _health)
+{
+	health = _health;
 }
 
 void GameObject::DrawBox()

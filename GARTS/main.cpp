@@ -36,6 +36,14 @@ int main(int argc, char* args[])
 	test_object3.SetY(400.0f);
 	gameObjects.push_back(test_object3);
 
+	
+	Barracks barracks = Barracks("..//media/barracks.bmp", gRenderer);
+	barracks.SetSpeed(0.0f);
+	barracks.SetX(400.0f);
+	barracks.SetY(400.0f);
+	gameObjects.push_back(barracks);
+
+
 
 
 
@@ -156,6 +164,7 @@ void Update()
 	{
 		lerpreverse = false;
 	}
+
 }
 
 void Render()
