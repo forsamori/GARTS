@@ -138,6 +138,7 @@
     <ClCompile Include="Selector.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="texture.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Barracks.h" />

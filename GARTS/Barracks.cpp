@@ -16,9 +16,9 @@ void Barracks::Update()
 
 	if (IsSelected() || spawnButton.IsSelected())
 	{
-		spawnButton.SetX(GetX());
-		spawnButton.SetY(GetY());
-		spawnButton.Update();
+		//spawnButton.SetX(GetX());
+		//spawnButton.SetY(GetY());
+		//spawnButton.Update();
 		//Debug_String("Barracks is now selected");
 	}
 
@@ -34,7 +34,7 @@ void Barracks::Render()
 
 	if (IsSelected() || spawnButton.IsSelected())
 	{
-		spawnButton.Render();
+		barracksUnit.Render();
 	}
 
 	

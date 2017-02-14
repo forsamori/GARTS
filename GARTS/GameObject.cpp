@@ -139,13 +139,13 @@ void GameObject::Update()
 
 
 }
-
+//Justin was here, 14/02/17  15:57
 void GameObject::Render()
 {
 	sprite.Render();
 	if (selected == true)
 	{
-		DrawBox();
+		DrawBox(/*Pass pointer to renderer here as well*/);
 	}
 }
 

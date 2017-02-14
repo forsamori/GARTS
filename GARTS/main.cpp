@@ -47,6 +47,8 @@ int main(int argc, char* args[])
 
 
 
+
+
 	//Main loop
 	while (!quit)
 	{
@@ -183,7 +185,7 @@ void Render()
 	int vecSize = gameObjects.size();
 	for (int i = 0; i < vecSize; i++)
 	{
-		gameObjects.at(i)->Render();
+		gameObjects.at(i)->Render(/*Put a pointer to SDL_Renderer here to save memory (Harry said so)*/);
 	}
 	//----
 
