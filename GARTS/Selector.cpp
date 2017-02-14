@@ -13,7 +13,7 @@ std::vector<GameObject*>* Selector::GetSelection()
 	return &selection;
 }
 
-void Selector::Select(int _x, int _y, std::vector<GameObject>* _objectsVec)
+void Selector::Select(int _x, int _y, std::vector<GameObject*>* _objectsVec)
 {
 	//Drop currently selected units in favour of single unit.
 	ClearSelection();
@@ -33,7 +33,7 @@ void Selector::Select(int _x, int _y, std::vector<GameObject>* _objectsVec)
 
 }
 
-std::vector<GameObject*> Selector::BoxSelect(vec2f startCoord, vec2f endCoord, std::vector<GameObject>* _objectsVec)
+std::vector<GameObject*> Selector::BoxSelect(vec2f startCoord, vec2f endCoord, std::vector<GameObject*>* _objectsVec)
 {
 	ClearSelection();
 
@@ -42,7 +42,7 @@ std::vector<GameObject*> Selector::BoxSelect(vec2f startCoord, vec2f endCoord, s
 	int vecSize = _objectsVec->size();
 	for (int i = 0; i < vecSize; i++)
 	{
-		GameObject* obj = &_objectsVec->at(i);
+		GameObject* obj = _objectsVec->at(i);
 		if (obj->GetX() > startCoord.x && (obj->GetX() + obj->GetWidth()) < endCoord.x &&
 			obj->GetY() > startCoord.y && (obj->GetY() + obj->GetHeight()) < endCoord.y)
 		{
@@ -71,13 +71,13 @@ std::vector<GameObject*> Selector::BoxSelect(vec2f startCoord, vec2f endCoord, s
 	//...add them to selected list.
 }
 
-GameObject* Selector::MouseCollision(int _x, int _y, std::vector<GameObject>* _objectsVec)
+GameObject* Selector::MouseCollision(int _x, int _y, std::vector<GameObject*>* _objectsVec)
 {
 	//LOOP gameobjects
 	int vecSize = _objectsVec->size();
 	for (int i = 0; i < vecSize; i++)
 	{
-		GameObject* obj = &_objectsVec->at(i);
+		GameObject* obj = _objectsVec->at(i);
 		if (_x > obj->GetX() && _x < (obj->GetX() + obj->GetWidth()) &&
 			_y > obj->GetY() && _y < (obj->GetY() + obj->GetHeight()))
 		{

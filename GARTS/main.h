@@ -20,6 +20,9 @@ Treat it as a gameobject to prevent code-repetition.
 http://www.cplusplus.com/doc/tutorial/polymorphism/
 
 
+CURRENT: Get Barracks UI button to spawn units. Right now it can be selected (AS IF IT WERE A NORMAL GAMEOBJECT)...
+...We don't want this. Instead, make it behave like a UI element (i.e it cannot be selected, only clicked and an action fired).
+
 //SEE MOVE TO POINT
 */
 
@@ -44,6 +47,7 @@ http://www.cplusplus.com/doc/tutorial/polymorphism/
 //Const definitions
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 768;
+const float MOUSE_DOWN_THRESHOLD = 5.0f;
 
 //KeyPress definitions
 enum ENUM_KEYPRESS
@@ -109,9 +113,10 @@ SDL_Renderer* gRenderer = NULL;
 
 Selector selection;
 
-std::vector<GameObject> gameObjects;
+std::vector<GameObject*> gameObjects;
 
 bool mouseDown;
+float mouseDownTime;
 
 vec2f clickStart;
 vec2f clickCurrent;

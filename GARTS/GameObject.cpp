@@ -19,7 +19,7 @@ GameObject::GameObject()
 	speed = 0;
 }
 
-GameObject::GameObject(std::string tex_path, SDL_Renderer* _renderer)
+GameObject::GameObject(std::string tex_path, SDL_Renderer* _renderer, std::vector<GameObject*>* _gameObjects)
 {
 	xPos = 0;
 	yPos = 0;
@@ -32,6 +32,8 @@ GameObject::GameObject(std::string tex_path, SDL_Renderer* _renderer)
 	gotoAccuracy = 1;
 	renderer = _renderer;
 	selected = false;
+
+	gameObjects = _gameObjects;
 
 	velocity.x = 0;
 	velocity.y = 0;

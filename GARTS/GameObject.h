@@ -5,13 +5,16 @@
 #include "Sprite.h"
 #include <iostream>
 #include "helper_functions.h"
+#include <vector>
 
 class GameObject
 {
 
 public:
 	GameObject();
-	GameObject(std::string tex_path, SDL_Renderer*);
+	//Include pointer to gameobjects list so if a GameObject creates any other GameObjects, we can
+	//add them to the main update/render vector.
+	GameObject(std::string tex_path, SDL_Renderer*, std::vector<GameObject*>* _gameObjects);
 	~GameObject();
 
 	Sprite* GetSprite();
@@ -34,7 +37,7 @@ public:
 	void SetAngle(int _angle);
 
 	virtual void Update();
-	void Render();
+	virtual void Render();
 	void DrawBox();
 
 	void AABBCollision(GameObject* AA, GameObject* BB);
@@ -64,6 +67,8 @@ private:
 	int gotoAccuracy;
 	SDL_Renderer* renderer;
 	bool selected;
+	
+	std::vector<GameObject*>* gameObjects;
 
 	float health;
 
