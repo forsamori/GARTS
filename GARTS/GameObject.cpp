@@ -19,7 +19,7 @@ GameObject::GameObject()
 	speed = 0;
 }
 
-GameObject::GameObject(std::string tex_path, SDL_Renderer* _renderer, std::vector<GameObject*>* _gameObjects)
+GameObject::GameObject(std::string tex_path, SDL_Renderer* _renderer, std::vector<GameObject>* _gameObjects)
 {
 	xPos = 0;
 	yPos = 0;

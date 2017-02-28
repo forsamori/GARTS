@@ -33,11 +33,13 @@ int Sprite::GetY()
 void Sprite::SetX(int _x)
 {
 	xPos = _x;
+	Update(); //HACK - Remove this when we get a better way of setting new values to vars.
 }
 
 void Sprite::SetY(int _y)
 {
 	yPos = _y;
+	Update();
 }
 
 int Sprite::GetHeight()
@@ -70,4 +72,9 @@ void Sprite::Update()
 void Sprite::Render()
 {
 	tex.Render();
+}
+
+Texture* Sprite::GetTexture()
+{
+	return &tex;
 }

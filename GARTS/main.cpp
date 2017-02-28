@@ -17,31 +17,33 @@ int main(int argc, char* args[])
 
 	sMan = Sprite("..//media/man.bmp", gRenderer);
 
+	//test_object = GameObject("..//media/test.bmp", gRenderer, &gameObjects);
 	test_object = GameObject("..//media/test.bmp", gRenderer, &gameObjects);
 	test_object.SetSpeed(0.02f);
 	test_object.SetX(100.0f);
 	test_object.SetY(50.0f);
 	//Add to GameObject member vector.
-	gameObjects.push_back(&test_object);
+	//gameObjects.push_back(&test_object);
+	gameObjects.push_back(test_object);
 
 	test_object2 = GameObject("..//media/test.bmp", gRenderer, &gameObjects);
 	test_object2.SetSpeed(0.02f);
 	test_object2.SetX(500.0f);
 	test_object2.SetY(200.0f);
-	gameObjects.push_back(&test_object2);
+	gameObjects.push_back(test_object2);
 
 	test_object3 = GameObject("..//media/test.bmp", gRenderer, &gameObjects);
 	test_object3.SetSpeed(0.02f);
 	test_object3.SetX(300.0f);
 	test_object3.SetY(400.0f);
-	gameObjects.push_back(&test_object3);
+	gameObjects.push_back(test_object3);
 
 	
 	Barracks barracks = Barracks("..//media/barracks.bmp", gRenderer, &gameObjects);
 	barracks.SetSpeed(0.0f);
 	barracks.SetX(400.0f);
 	barracks.SetY(400.0f);
-	gameObjects.push_back(&barracks);
+	gameObjects.push_back(barracks);
 
 
 
@@ -140,7 +142,7 @@ void Update()
 	int vecSize = gameObjects.size();
 	for (int i = 0; i < vecSize; i++)
 	{
-		gameObjects.at(i)->Update();
+		gameObjects.at(i).Update();
 	}
 
 	//Prevent redeclaration in loop using STATIC
@@ -185,7 +187,7 @@ void Render()
 	int vecSize = gameObjects.size();
 	for (int i = 0; i < vecSize; i++)
 	{
-		gameObjects.at(i)->Render(/*Put a pointer to SDL_Renderer here to save memory (Harry said so)*/);
+		gameObjects.at(i).Render(/*Put a pointer to SDL_Renderer here to save memory (Harry said so)*/);
 	}
 	//----
 

@@ -1,19 +1,28 @@
 #ifndef _UI_H
 #define _UI_H
 
-#include "Sprite.h"
+#include "GameObject.h"
 
-class UI : public Sprite {
+enum UNIT_TYPE
+{
+	UNIT_WORKER,
+	UNIT_ARCHER,
+	UNIT_SPEAR,
+	UNIT_HORSE,
+	UNIT_NONE
+};
+
+class UI : public GameObject {
 
 public:
 
 	UI();
-	UI(int _screenX, int _screenY, std::string tex_path, SDL_Renderer* _renderer);
+	UI(int _screenX, int _screenY, std::string tex_path, SDL_Renderer* _renderer, UI_TYPE _type, UNIT_TYPE _unit_type);
 	~UI();
 
 	void Render();
 	void Update();
-
+	Sprite* GetSprite();
 
 	
 
@@ -25,6 +34,9 @@ private:
 	int worldY;
 
 	Sprite sprite;
+	UI_TYPE _type;
+	UNIT_TYPE _unit_type;
+
 
 };
 

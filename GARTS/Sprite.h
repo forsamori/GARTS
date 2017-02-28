@@ -24,6 +24,8 @@ public:
 	void Update();
 	void Render();
 
+	Texture* GetTexture();
+
 
 
 private:

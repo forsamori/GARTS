@@ -4,6 +4,12 @@
 #include <windows.h>
 #include <sstream>
 
+enum UI_TYPE
+{
+	UI_SPAWN,
+	UI_ORDER,
+};
+
 struct vec2
 {
 	int x;

@@ -114,7 +114,7 @@ SDL_Renderer* gRenderer = NULL;
 
 Selector selection;
 
-std::vector<GameObject*> gameObjects;
+std::vector<GameObject> gameObjects;
 
 bool mouseDown;
 float mouseDownTime;
