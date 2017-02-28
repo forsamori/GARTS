@@ -19,7 +19,7 @@ GameObject::GameObject()
 	speed = 0;
 }
 
-GameObject::GameObject(std::string tex_path, SDL_Renderer* _renderer, std::vector<GameObject*>* _gameObjects)
+GameObject::GameObject(std::string tex_path, SDL_Renderer* _renderer, std::vector<GameObject*>* _gameObjects, UnitManager* _unitManager)
 {
 	xPos = 0;
 	yPos = 0;
@@ -34,6 +34,7 @@ GameObject::GameObject(std::string tex_path, SDL_Renderer* _renderer, std::vecto
 	selected = false;
 
 	gameObjects = _gameObjects;
+	unitManager = _unitManager;
 
 	velocity.x = 0;
 	velocity.y = 0;

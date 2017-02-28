@@ -9,7 +9,7 @@ class Barracks : public GameObject {
 public:
 
 	//Barracks(std::string tex_path, SDL_Renderer* _renderer);
-	Barracks(std::string tex_path, SDL_Renderer* _renderer, std::vector<GameObject*>* _gameObjects) : GameObject(tex_path, _renderer, _gameObjects)
+	Barracks(std::string tex_path, SDL_Renderer* _renderer, std::vector<GameObject*>* _gameObjects, UnitManager* _unitManager) : GameObject(tex_path, _renderer, _gameObjects, _unitManager)
 	{
 		//spawnButton = GameObject("..//media/infSpawn.bmp", _renderer, _gameObjects);
 		//spawnButton.SetX(GetX());

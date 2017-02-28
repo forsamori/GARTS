@@ -139,6 +139,7 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="UnitManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Barracks.h" />
@@ -149,6 +150,7 @@
     <ClInclude Include="texture.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="UnitManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

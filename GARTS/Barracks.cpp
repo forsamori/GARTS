@@ -7,6 +7,15 @@ Barracks::~Barracks()
 
 void Barracks::SpawnUnit()
 {
+	
+	//GameObject unit = GameObject("..//media/man.bmp", _renderer, _gameObjects);
+	GameObject unit = GameObject("..//media/man.bmp", renderer, gameObjects, unitManager);
+	unit.SetSpeed(0.0f);
+	unit.SetX(GetX());
+	unit.SetY(GetY());
+	unitManager->SpawnUnit(unit);
+	//_gameObjects->push_back(&unit); //Problem pushing GameObject into this list.
+	//gameObjects->push_back(&unit);
 }
 
 //Called by baseclass (GameObject)

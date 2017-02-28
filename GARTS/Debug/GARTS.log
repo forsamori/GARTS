@@ -1,5 +1,40 @@
 ﻿  main.cpp
 m:\github\garts\helper_functions.h(30): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+m:\github\garts\unitmanager.h(11): error C2065: 'GameObject': undeclared identifier
+m:\github\garts\unitmanager.h(11): error C2059: syntax error: '>'
+m:\github\garts\unitmanager.h(11): error C2976: 'std::vector': too few template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(678): note: see declaration of 'std::vector'
+m:\github\garts\unitmanager.h(12): error C2061: syntax error: identifier 'GameObject'
+m:\github\garts\unitmanager.h(16): error C2065: 'GameObject': undeclared identifier
+m:\github\garts\unitmanager.h(16): error C2059: syntax error: '>'
+m:\github\garts\unitmanager.h(16): error C2976: 'std::vector': too few template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(678): note: see declaration of 'std::vector'
+m:\github\garts\unitmanager.h(17): error C2065: 'GameObject': undeclared identifier
+m:\github\garts\unitmanager.h(17): error C2923: 'std::vector': 'GameObject' is not a valid template type argument for parameter '_Ty'
+m:\github\garts\main.cpp(20): error C2440: '<function-style-cast>': cannot convert from 'initializer list' to 'GameObject'
+  m:\github\garts\main.cpp(20): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+m:\github\garts\main.cpp(25): error C2663: 'std::vector<_Ty,_Alloc>::push_back': 2 overloads have no legal conversion for 'this' pointer
+m:\github\garts\main.cpp(27): error C2440: '<function-style-cast>': cannot convert from 'initializer list' to 'GameObject'
+  m:\github\garts\main.cpp(27): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+m:\github\garts\main.cpp(31): error C2663: 'std::vector<_Ty,_Alloc>::push_back': 2 overloads have no legal conversion for 'this' pointer
+m:\github\garts\main.cpp(33): error C2440: '<function-style-cast>': cannot convert from 'initializer list' to 'GameObject'
+  m:\github\garts\main.cpp(33): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+m:\github\garts\main.cpp(37): error C2663: 'std::vector<_Ty,_Alloc>::push_back': 2 overloads have no legal conversion for 'this' pointer
+m:\github\garts\main.cpp(40): error C2440: '<function-style-cast>': cannot convert from 'initializer list' to 'Barracks'
+  m:\github\garts\main.cpp(40): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+m:\github\garts\main.cpp(40): error C2512: 'Barracks': no appropriate default constructor available
+  m:\github\garts\barracks.h(7): note: see declaration of 'Barracks'
+m:\github\garts\main.cpp(44): error C2663: 'std::vector<_Ty,_Alloc>::push_back': 2 overloads have no legal conversion for 'this' pointer
+m:\github\garts\main.cpp(140): error C2662: '_Vector_alloc<std::_Vec_base_types<_Ty,_Alloc_types::_Alloc>>::size_type std::vector<_Ty,_Alloc>::size(void) noexcept const': cannot convert 'this' pointer from 'std::vector' to 'const std::vector<_Ty,_Alloc> &'
+  m:\github\garts\main.cpp(140): note: Reason: cannot convert from 'std::vector' to 'const std::vector<_Ty,_Alloc>'
+  m:\github\garts\main.cpp(140): note: Conversion requires a second user-defined-conversion operator or constructor
+m:\github\garts\main.cpp(143): error C2663: 'std::vector<_Ty,_Alloc>::at': 2 overloads have no legal conversion for 'this' pointer
+m:\github\garts\main.cpp(143): error C2227: left of '->Update' must point to class/struct/union/generic type
+m:\github\garts\main.cpp(185): error C2662: '_Vector_alloc<std::_Vec_base_types<_Ty,_Alloc_types::_Alloc>>::size_type std::vector<_Ty,_Alloc>::size(void) noexcept const': cannot convert 'this' pointer from 'std::vector' to 'const std::vector<_Ty,_Alloc> &'
+  m:\github\garts\main.cpp(185): note: Reason: cannot convert from 'std::vector' to 'const std::vector<_Ty,_Alloc>'
+  m:\github\garts\main.cpp(185): note: Conversion requires a second user-defined-conversion operator or constructor
+m:\github\garts\main.cpp(188): error C2663: 'std::vector<_Ty,_Alloc>::at': 2 overloads have no legal conversion for 'this' pointer
+m:\github\garts\main.cpp(188): error C2227: left of '->Render' must point to class/struct/union/generic type
 m:\github\garts\main.cpp(196): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 m:\github\garts\main.cpp(197): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 m:\github\garts\main.cpp(198): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
@@ -8,9 +43,96 @@ m:\github\garts\main.cpp(279): warning C4244: '=': conversion from 'Sint32' to '
 m:\github\garts\main.cpp(280): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
 m:\github\garts\main.cpp(284): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
 m:\github\garts\main.cpp(285): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
+m:\github\garts\main.cpp(294): error C2664: 'std::vector<GameObject *,std::allocator<_Ty>> Selector::BoxSelect(vec2f,vec2f,std::vector<_Ty,std::allocator<_Ty>> *)': cannot convert argument 3 from 'std::vector *' to 'std::vector<GameObject *,std::allocator<_Ty>> *'
+          with
+          [
+              _Ty=GameObject *
+          ]
+  m:\github\garts\main.cpp(294): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+m:\github\garts\main.cpp(297): error C2664: 'void Selector::Select(int,int,std::vector<GameObject *,std::allocator<_Ty>> *)': cannot convert argument 3 from 'std::vector *' to 'std::vector<GameObject *,std::allocator<_Ty>> *'
+          with
+          [
+              _Ty=GameObject *
+          ]
+  m:\github\garts\main.cpp(297): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
 m:\github\garts\main.cpp(313): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
 m:\github\garts\main.cpp(314): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
+  UnitManager.cpp
+m:\github\garts\unitmanager.h(11): error C2039: 'vector': is not a member of 'std'
+  m:\github\garts\predefined c++ types (compiler internal)(208): note: see declaration of 'std'
+m:\github\garts\unitmanager.h(11): error C2143: syntax error: missing ';' before '<'
+m:\github\garts\unitmanager.h(11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+m:\github\garts\unitmanager.h(11): error C2238: unexpected token(s) preceding ';'
+m:\github\garts\unitmanager.h(12): error C2061: syntax error: identifier 'GameObject'
+m:\github\garts\unitmanager.h(16): error C2039: 'vector': is not a member of 'std'
+  m:\github\garts\predefined c++ types (compiler internal)(208): note: see declaration of 'std'
+m:\github\garts\unitmanager.h(16): error C2143: syntax error: missing ';' before '<'
+m:\github\garts\unitmanager.h(16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+m:\github\garts\unitmanager.h(16): error C2238: unexpected token(s) preceding ';'
+m:\github\garts\unitmanager.h(17): error C2039: 'vector': is not a member of 'std'
+  m:\github\garts\predefined c++ types (compiler internal)(208): note: see declaration of 'std'
+m:\github\garts\unitmanager.h(17): error C2143: syntax error: missing ';' before '<'
+m:\github\garts\unitmanager.h(17): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+m:\github\garts\unitmanager.h(17): error C2238: unexpected token(s) preceding ';'
+m:\github\garts\unitmanager.cpp(4): error C2039: 'vector': is not a member of 'std'
+  m:\github\garts\predefined c++ types (compiler internal)(208): note: see declaration of 'std'
+m:\github\garts\unitmanager.cpp(4): error C2143: syntax error: missing ';' before '<'
+m:\github\garts\unitmanager.cpp(4): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+m:\github\garts\unitmanager.cpp(4): error C2039: 'GetGameObjectsRefList': is not a member of 'UnitManager'
+  m:\github\garts\unitmanager.h(8): note: see declaration of 'UnitManager'
+m:\github\garts\unitmanager.cpp(5): error C2143: syntax error: missing ';' before '{'
+m:\github\garts\unitmanager.cpp(5): error C2447: '{': missing function header (old-style formal list?)
+m:\github\garts\unitmanager.cpp(9): error C2065: 'GameObject': undeclared identifier
+m:\github\garts\unitmanager.cpp(9): error C2146: syntax error: missing ')' before identifier 'spawnObject'
+m:\github\garts\unitmanager.cpp(10): error C2143: syntax error: missing ';' before '{'
+m:\github\garts\unitmanager.cpp(10): error C2447: '{': missing function header (old-style formal list?)
+  Selector.cpp
+m:\github\garts\helper_functions.h(30): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+m:\github\garts\unitmanager.h(11): error C2065: 'GameObject': undeclared identifier
+m:\github\garts\unitmanager.h(11): error C2059: syntax error: '>'
+m:\github\garts\unitmanager.h(11): error C2976: 'std::vector': too few template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(678): note: see declaration of 'std::vector'
+m:\github\garts\unitmanager.h(12): error C2061: syntax error: identifier 'GameObject'
+m:\github\garts\unitmanager.h(16): error C2065: 'GameObject': undeclared identifier
+m:\github\garts\unitmanager.h(16): error C2059: syntax error: '>'
+m:\github\garts\unitmanager.h(16): error C2976: 'std::vector': too few template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(678): note: see declaration of 'std::vector'
+m:\github\garts\unitmanager.h(17): error C2065: 'GameObject': undeclared identifier
+m:\github\garts\unitmanager.h(17): error C2923: 'std::vector': 'GameObject' is not a valid template type argument for parameter '_Ty'
+m:\github\garts\selector.cpp(60): warning C4018: '<': signed/unsigned mismatch
+m:\github\garts\selector.cpp(93): warning C4018: '<': signed/unsigned mismatch
+  GameObject.cpp
+m:\github\garts\helper_functions.h(30): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+m:\github\garts\unitmanager.h(11): error C2065: 'GameObject': undeclared identifier
+m:\github\garts\unitmanager.h(11): error C2059: syntax error: '>'
+m:\github\garts\unitmanager.h(11): error C2976: 'std::vector': too few template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(678): note: see declaration of 'std::vector'
+m:\github\garts\unitmanager.h(12): error C2061: syntax error: identifier 'GameObject'
+m:\github\garts\unitmanager.h(16): error C2065: 'GameObject': undeclared identifier
+m:\github\garts\unitmanager.h(16): error C2059: syntax error: '>'
+m:\github\garts\unitmanager.h(16): error C2976: 'std::vector': too few template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(678): note: see declaration of 'std::vector'
+m:\github\garts\unitmanager.h(17): error C2065: 'GameObject': undeclared identifier
+m:\github\garts\unitmanager.h(17): error C2923: 'std::vector': 'GameObject' is not a valid template type argument for parameter '_Ty'
+m:\github\garts\gameobject.cpp(137): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+m:\github\garts\gameobject.cpp(138): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+m:\github\garts\gameobject.cpp(185): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+m:\github\garts\gameobject.cpp(186): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+m:\github\garts\gameobject.cpp(188): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+m:\github\garts\gameobject.cpp(207): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+m:\github\garts\gameobject.cpp(207): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   Barracks.cpp
 m:\github\garts\helper_functions.h(30): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+m:\github\garts\unitmanager.h(11): error C2065: 'GameObject': undeclared identifier
+m:\github\garts\unitmanager.h(11): error C2059: syntax error: '>'
+m:\github\garts\unitmanager.h(11): error C2976: 'std::vector': too few template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(678): note: see declaration of 'std::vector'
+m:\github\garts\unitmanager.h(12): error C2061: syntax error: identifier 'GameObject'
+m:\github\garts\unitmanager.h(16): error C2065: 'GameObject': undeclared identifier
+m:\github\garts\unitmanager.h(16): error C2059: syntax error: '>'
+m:\github\garts\unitmanager.h(16): error C2976: 'std::vector': too few template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(678): note: see declaration of 'std::vector'
+m:\github\garts\unitmanager.h(17): error C2065: 'GameObject': undeclared identifier
+m:\github\garts\unitmanager.h(17): error C2923: 'std::vector': 'GameObject' is not a valid template type argument for parameter '_Ty'
+m:\github\garts\barracks.cpp(16): error C2660: 'UnitManager::SpawnUnit': function does not take 1 arguments
   Generating Code...
-  GARTS.vcxproj -> M:\GitHub\Debug\GARTS.exe

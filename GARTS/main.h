@@ -44,6 +44,7 @@ CURRENT: Get Barracks UI button to spawn units. Right now it can be selected (AS
 #include "Selector.h"
 #include "Barracks.h"
 #include "UI.h"
+#include "UnitManager.h"
 
 //Const definitions
 const int SCREEN_WIDTH = 1024;
@@ -114,13 +115,15 @@ SDL_Renderer* gRenderer = NULL;
 
 Selector selection;
 
-std::vector<GameObject*> gameObjects;
+
 
 bool mouseDown;
 float mouseDownTime;
 
 vec2f clickStart;
 vec2f clickCurrent;
+
+UnitManager unitManager;
 
 // --- END Global Variables ---
 
