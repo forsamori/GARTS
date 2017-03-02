@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="Barracks.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Global.h" />
     <ClInclude Include="helper_functions.h" />
     <ClInclude Include="Selector.h" />
     <ClInclude Include="Sprite.h" />

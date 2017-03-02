@@ -9,11 +9,16 @@ void Barracks::SpawnUnit()
 {
 	
 	//GameObject unit = GameObject("..//media/man.bmp", _renderer, _gameObjects);
-	GameObject unit = GameObject("..//media/man.bmp", renderer, gameObjects, unitManager);
-	unit.SetSpeed(0.0f);
-	unit.SetX(GetX());
-	unit.SetY(GetY());
-	unitManager->SpawnUnit(unit);
+	
+	gameObjects->push_back(GameObject("..//media/man.bmp", renderer, gameObjectsRef, gameObjects));
+	gameObjects->back().SetSpeed(0.0f);
+	gameObjects->back().SetX(GetX());
+	gameObjects->back().SetY(GetY());
+	gameObjectsRef->push_back(&gameObjects->back());
+
+	//Need to find a way of getting UnitManager to declare correctly. Could possibly use Helper Functions, though not sure.
+	//The reason it broke was because of a circular dependency.
+	//unitManager->SpawnUnit(unit);
 	//_gameObjects->push_back(&unit); //Problem pushing GameObject into this list.
 	//gameObjects->push_back(&unit);
 }
@@ -29,6 +34,12 @@ void Barracks::Update()
 		//spawnButton.SetY(GetY());
 		//spawnButton.Update();
 		//Debug_String("Barracks is now selected");
+		if (beginSpawn)
+		{
+			SpawnUnit();
+			beginSpawn = false;
+		}
+		//SpawnUnit();
 	}
 
 	//Execute generic GameObject update

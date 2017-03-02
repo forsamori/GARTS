@@ -17,31 +17,35 @@ int main(int argc, char* args[])
 
 	sMan = Sprite("..//media/man.bmp", gRenderer);
 
-	test_object = GameObject("..//media/test.bmp", gRenderer, unitManager.GetGameObjectsRefList(), &unitManager);
+	test_object = GameObject("..//media/test.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	test_object.SetSpeed(0.02f);
 	test_object.SetX(100.0f);
 	test_object.SetY(50.0f);
 	//Add to GameObject member vector.
-	unitManager.GetGameObjectsRefList()->push_back(&test_object);
+	gameObjects.push_back(test_object);
+	gameObjectsRef.push_back(&test_object);
 
-	test_object2 = GameObject("..//media/test.bmp", gRenderer, unitManager.GetGameObjectsRefList(), &unitManager);
+	test_object2 = GameObject("..//media/test.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	test_object2.SetSpeed(0.02f);
 	test_object2.SetX(500.0f);
 	test_object2.SetY(200.0f);
-	unitManager.GetGameObjectsRefList()->push_back(&test_object2);
+	gameObjects.push_back(test_object2);
+	gameObjectsRef.push_back(&test_object2);
 
-	test_object3 = GameObject("..//media/test.bmp", gRenderer, unitManager.GetGameObjectsRefList(), &unitManager);
+	test_object3 = GameObject("..//media/test.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	test_object3.SetSpeed(0.02f);
 	test_object3.SetX(300.0f);
 	test_object3.SetY(400.0f);
-	unitManager.GetGameObjectsRefList()->push_back(&test_object3);
+	gameObjects.push_back(test_object3);
+	gameObjectsRef.push_back(&test_object3);
 
 	
-	Barracks barracks = Barracks("..//media/barracks.bmp", gRenderer, unitManager.GetGameObjectsRefList());
+	Barracks barracks = Barracks("..//media/barracks.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	barracks.SetSpeed(0.0f);
 	barracks.SetX(400.0f);
 	barracks.SetY(400.0f);
-	unitManager.GetGameObjectsRefList()->push_back(&barracks);
+	gameObjects.push_back(barracks);
+	gameObjectsRef.push_back(&barracks);
 
 
 
@@ -137,10 +141,10 @@ void Update()
 {
 	sMan.Update();
 	//test_object.Update();
-	int vecSize = unitManager.GetGameObjectsRefList()->size();
+	int vecSize = gameObjectsRef.size();
 	for (int i = 0; i < vecSize; i++)
 	{
-		unitManager.GetGameObjectsRefList()->at(i)->Update();
+		gameObjectsRef.at(i)->Update();
 	}
 
 	//Prevent redeclaration in loop using STATIC
@@ -182,10 +186,10 @@ void Render()
 
 	sMan.Render();
 
-	int vecSize = unitManager.GetGameObjectsRefList()->size();
+	int vecSize = gameObjectsRef.size();
 	for (int i = 0; i < vecSize; i++)
 	{
-		unitManager.GetGameObjectsRefList()->at(i)->Render(/*Put a pointer to SDL_Renderer here to save memory (Harry said so)*/);
+		gameObjectsRef.at(i)->Render(/*Put a pointer to SDL_Renderer here to save memory (Harry said so)*/);
 	}
 	//----
 
@@ -270,6 +274,13 @@ void Input()
 					obj->SetX(obj->GetX() + 1);
 				}
 				break;
+			case SDLK_s:
+				if (!selection.GetSelection()->empty())
+				{
+					GameObject* obj = selection.GetSelection()->front();
+					obj->beginSpawn = true;
+				}
+				break;
 			}
 		}
 		else if (_event.type == SDL_MOUSEBUTTONDOWN)
@@ -291,10 +302,10 @@ void Input()
 			mouseDown = false;
 			if (mouseDownTime > MOUSE_DOWN_THRESHOLD)
 			{
-				selection.BoxSelect(clickStart, clickCurrent, unitManager.GetGameObjectsRefList());
+				selection.BoxSelect(clickStart, clickCurrent, &gameObjectsRef);
 			}
 			else
-				selection.Select(_event.button.x, _event.button.y, unitManager.GetGameObjectsRefList());
+				selection.Select(_event.button.x, _event.button.y, &gameObjectsRef);
 			Debug_String("Releasing MOUSE1");
 			mouseDownTime = 0.0f;
 		}
@@ -316,3 +327,9 @@ void Input()
 		}
 	}
 }
+
+/*void SpawnUnit(GameObject spawnObject)
+{
+	gameObjects.push_back(spawnObject);
+	gameObjectsRef.push_back(&spawnObject);
+}*/

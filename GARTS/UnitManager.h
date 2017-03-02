@@ -1,8 +1,9 @@
 #ifndef _UNIT_MANAGER_H
 #define _UNIT_MANAGER_H
 
+#include "GameObject.h"
 //#include <vector>
-//#include "GameObject.h"
+
 
 class UnitManager
 {
@@ -19,4 +20,3 @@ private:
 };
 
 #endif // !_UNIT_MANAGER_H
-

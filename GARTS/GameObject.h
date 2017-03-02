@@ -6,7 +6,9 @@
 #include <iostream>
 #include "helper_functions.h"
 #include <vector>
-#include "UnitManager.h"
+//#include "UnitManager.h"
+
+//extern std::vector<GameObject> gameObjects;
 
 class GameObject
 {
@@ -15,7 +17,7 @@ public:
 	GameObject();
 	//Include pointer to gameobjects list so if a GameObject creates any other GameObjects, we can
 	//add them to the main update/render vector.
-	GameObject(std::string tex_path, SDL_Renderer*, std::vector<GameObject*>* _gameObjects, UnitManager* unitManager);
+	GameObject(std::string tex_path, SDL_Renderer*, std::vector<GameObject*>* _gameObjectsRef, std::vector<GameObject>* _gameObjects);
 	~GameObject();
 
 	Sprite* GetSprite();
@@ -52,10 +54,13 @@ public:
 
 	void SetHealth(float _health);
 
+	bool beginSpawn;
+
 protected:
-	std::vector<GameObject*>* gameObjects;
+	std::vector<GameObject*>* gameObjectsRef;
+	std::vector<GameObject>* gameObjects;
 	SDL_Renderer* renderer;
-	UnitManager* unitManager;
+
 private:
 
 	float xPos;

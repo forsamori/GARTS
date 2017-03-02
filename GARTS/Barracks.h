@@ -4,12 +4,14 @@
 #include "GameObject.h"
 #include "UI.h"
 
+
+
 class Barracks : public GameObject {
 
 public:
 
 	//Barracks(std::string tex_path, SDL_Renderer* _renderer);
-	Barracks(std::string tex_path, SDL_Renderer* _renderer, std::vector<GameObject*>* _gameObjects, UnitManager* _unitManager) : GameObject(tex_path, _renderer, _gameObjects, _unitManager)
+	Barracks(std::string tex_path, SDL_Renderer* _renderer, std::vector<GameObject*>* _gameObjectsRef, std::vector<GameObject>* _gameObjects) : GameObject(tex_path, _renderer, _gameObjectsRef, _gameObjects)
 	{
 		//spawnButton = GameObject("..//media/infSpawn.bmp", _renderer, _gameObjects);
 		//spawnButton.SetX(GetX());
@@ -35,7 +37,7 @@ private:
 
 	GameObject spawnButton;
 	UI barracksUnit;
-
+	SDL_Event _event;
 
 };
 

@@ -1,14 +1,8 @@
 m:\github\garts\debug\vc140.pdb
 m:\github\garts\debug\vc140.idb
-m:\github\garts\debug\gameobject.obj
-m:\github\garts\debug\main.obj
 m:\github\garts\debug\sprite.obj
 m:\github\garts\debug\texture.obj
-m:\github\garts\debug\selector.obj
-m:\github\debug\garts.pdb
+m:\github\garts\debug\ui.obj
 m:\github\garts\debug\garts.tlog\cl.command.1.tlog
 m:\github\garts\debug\garts.tlog\cl.read.1.tlog
 m:\github\garts\debug\garts.tlog\cl.write.1.tlog
-m:\github\garts\debug\garts.tlog\link.command.1.tlog
-m:\github\garts\debug\garts.tlog\link.read.1.tlog
-m:\github\garts\debug\garts.tlog\link.write.1.tlog
