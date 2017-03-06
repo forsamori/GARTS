@@ -47,6 +47,25 @@ int main(int argc, char* args[])
 	gameObjects.push_back(barracks);
 	gameObjectsRef.push_back(&barracks);
 
+	Resource resource = Resource("..//media/resource.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	resource.SetX(200.0f);
+	resource.SetY(100.0f);
+	gameObjects.push_back(resource);
+	gameObjectsRef.push_back(&resource);
+
+	Worker worker = Worker("..//media/worker.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	worker.SetX(100.0f);
+	worker.SetY(300.0f);
+	gameObjects.push_back(worker);
+	gameObjectsRef.push_back(&worker);
+
+
+	Townhall townhall = Townhall("..//media/townhall.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	townhall.SetX(400.0f);
+	townhall.SetY(600.0f);
+	gameObjects.push_back(townhall);
+	gameObjectsRef.push_back(&townhall);
+
 
 
 
