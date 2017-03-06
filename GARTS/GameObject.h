@@ -10,6 +10,14 @@
 
 //extern std::vector<GameObject> gameObjects;
 
+enum ObjectType {
+	OT_UNIT,
+	OT_UNIT_WORKER,
+	OT_RESOURCE,
+	OT_TOWNHALL
+};
+
+
 class GameObject
 {
 
@@ -43,7 +51,7 @@ public:
 	virtual void Render();
 	void DrawBox();
 
-	void AABBCollision(GameObject* AA, GameObject* BB);
+	bool AABBCollision(GameObject* AA, GameObject* BB);
 	void SphereCollision(GameObject* AA, GameObject* BB);
 
 	void SelectObject();
@@ -56,10 +64,14 @@ public:
 
 	bool beginSpawn;
 
+	ObjectType OT;
+
 protected:
 	std::vector<GameObject*>* gameObjectsRef;
 	std::vector<GameObject>* gameObjects;
 	SDL_Renderer* renderer;
+	
+	
 
 private:
 

@@ -150,8 +150,27 @@ void GameObject::Render()
 	}
 }
 
-void GameObject::AABBCollision(GameObject* AA, GameObject* BB)
+bool GameObject::AABBCollision(GameObject* AA, GameObject* BB)
 {
+
+	// AABB 1
+	int x1Min = AA->GetX();
+	int x1Max = AA->GetX() + AA->GetWidth();
+	int y1Max = AA->GetY() + AA->GetHeight();
+	int y1Min = AA->GetY();
+
+	// AABB 2
+	int x2Min = BB->GetX();
+	int x2Max = BB->GetX() + BB->GetWidth();
+	int y2Max = BB->GetY() + BB->GetHeight();
+	int y2Min = BB->GetY();
+
+	// Collision tests
+	if (x1Max < x2Min || x1Min > x2Max) return false;
+	if (y1Max < y2Min || y1Min > y2Max) return false;
+
+	return true;
+
 }
 
 void GameObject::SphereCollision(GameObject* AA, GameObject* BB)
