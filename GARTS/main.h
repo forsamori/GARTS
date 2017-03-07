@@ -137,6 +137,8 @@ std::vector<GameObject*> gameObjectsRef;
 std::vector<GameObject> gameObjects;
 
 AI ai1 = AI(&gameObjectsRef, &gameObjects, OWN_AI1);
+AI ai2 = AI(&gameObjectsRef, &gameObjects, OWN_AI2);
+AI ai3 = AI(&gameObjectsRef, &gameObjects, OWN_AI3);
 
 //UnitManager unitManager;
 

@@ -68,6 +68,36 @@ int main(int argc, char* args[])
 	gameObjectsRef.push_back(&townhall);
 	townhall.owner = OWN_AI1;
 
+	Worker worker2 = Worker("..//media/worker.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	worker2.SetX(100.0f);
+	worker2.SetY(300.0f);
+	gameObjects.push_back(worker2);
+	gameObjectsRef.push_back(&worker2);
+	worker2.owner = OWN_AI2;
+
+
+	Townhall townhall2 = Townhall("..//media/townhall.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	townhall2.SetX(600.0f);
+	townhall2.SetY(200.0f);
+	gameObjects.push_back(townhall2);
+	gameObjectsRef.push_back(&townhall2);
+	townhall2.owner = OWN_AI2;
+
+	Worker worker3 = Worker("..//media/worker.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	worker3.SetX(100.0f);
+	worker3.SetY(300.0f);
+	gameObjects.push_back(worker3);
+	gameObjectsRef.push_back(&worker3);
+	worker3.owner = OWN_AI3;
+
+
+	Townhall townhall3 = Townhall("..//media/townhall.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	townhall3.SetX(800.0f);
+	townhall3.SetY(300.0f);
+	gameObjects.push_back(townhall3);
+	gameObjectsRef.push_back(&townhall3);
+	townhall3.owner = OWN_AI3;
+
 	//ai1 = AI(&gameObjectsRef, &gameObjects, OWN_AI1);
 
 
@@ -195,7 +225,8 @@ void Update()
 		lerpreverse = false;
 	}
 	ai1.Update();
-
+	ai2.Update();
+	ai3.Update();
 }
 
 void Render()

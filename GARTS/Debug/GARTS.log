@@ -1,10 +1,4 @@
-﻿  Worker.cpp
+﻿  Townhall.cpp
 m:\github\garts\helper_functions.h(30): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-m:\github\garts\worker.cpp(14): warning C4018: '<': signed/unsigned mismatch
-m:\github\garts\worker.cpp(72): warning C4018: '<': signed/unsigned mismatch
-m:\github\garts\worker.cpp(79): warning C4018: '<': signed/unsigned mismatch
-m:\github\garts\worker.cpp(81): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-m:\github\garts\worker.cpp(82): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-m:\github\garts\worker.cpp(100): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-m:\github\garts\worker.cpp(105): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+m:\github\garts\townhall.cpp(9): warning C4018: '<': signed/unsigned mismatch
   GARTS.vcxproj -> M:\GitHub\Debug\GARTS.exe
