@@ -58,6 +58,7 @@ int main(int argc, char* args[])
 	worker.SetY(300.0f);
 	gameObjects.push_back(worker);
 	gameObjectsRef.push_back(&worker);
+	worker.owner = OWN_AI1;
 
 
 	Townhall townhall = Townhall("..//media/townhall.bmp", gRenderer, &gameObjectsRef, &gameObjects);
@@ -65,6 +66,10 @@ int main(int argc, char* args[])
 	townhall.SetY(600.0f);
 	gameObjects.push_back(townhall);
 	gameObjectsRef.push_back(&townhall);
+	townhall.owner = OWN_AI1;
+
+	//ai1 = AI(&gameObjectsRef, &gameObjects, OWN_AI1);
+
 
 
 
@@ -189,6 +194,7 @@ void Update()
 	{
 		lerpreverse = false;
 	}
+	ai1.Update();
 
 }
 

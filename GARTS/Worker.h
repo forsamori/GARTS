@@ -4,6 +4,14 @@
 #include "GameObject.h"
 #include "Resource.h"
 
+enum WORKER_STATE
+{
+	WS_IDLE,
+	WS_COLLECT_INIT,
+	WS_COLLECT_GOTO,
+	WS_COLLECT_RETURN
+};
+
 class Worker : public GameObject
 {
 public:
@@ -11,16 +19,35 @@ public:
 	{
 		hasResources = false;
 		OT = OT_UNIT_WORKER;
+		worker_state = WS_IDLE;
+		SetSpeed(0.1f);
+		carrySprite = Sprite("..//media/workerCarry", _renderer);
+		defaultSprite = GetSprite();
+		
+
 	}
 	~Worker();
 	void Update();
 	void Render();
+
+	void CollectCycle();
+
 	bool hasResources;
 	int resourceCarrying;
+	WORKER_STATE worker_state;
+
+	GameObject* resourceTarget;
+	GameObject* resourceHome;
 
 protected:
 
 private:
+
+	Sprite carrySprite;
+	Sprite* defaultSprite;
+
+
+	
 
 
 

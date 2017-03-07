@@ -17,6 +17,18 @@ enum ObjectType {
 	OT_TOWNHALL
 };
 
+enum Owner {
+	OWN_NONE,
+	OWN_P1,
+	OWN_AI1,
+	OWN_AI2,
+	OWN_AI3,
+	OWN_AI4,
+	OWN_AI5,
+	OWN_AI6,
+	OWN_AI7
+};
+
 
 class GameObject
 {
@@ -65,6 +77,7 @@ public:
 	bool beginSpawn;
 
 	ObjectType OT;
+	Owner owner;
 
 protected:
 	std::vector<GameObject*>* gameObjectsRef;

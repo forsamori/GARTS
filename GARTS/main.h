@@ -36,6 +36,7 @@ CURRENT: Get Barracks UI button to spawn units. Right now it can be selected (AS
 #include <iostream>
 #include <sstream>
 
+
 //Custom class
 #include "texture.h"
 #include "Sprite.h"
@@ -49,6 +50,7 @@ CURRENT: Get Barracks UI button to spawn units. Right now it can be selected (AS
 #include "Resource.h"
 #include "Worker.h"
 #include "Townhall.h"
+#include "AI.h"
 
 //Const definitions
 const int SCREEN_WIDTH = 1024;
@@ -133,6 +135,8 @@ vec2f clickCurrent;
 
 std::vector<GameObject*> gameObjectsRef;
 std::vector<GameObject> gameObjects;
+
+AI ai1 = AI(&gameObjectsRef, &gameObjects, OWN_AI1);
 
 //UnitManager unitManager;
 

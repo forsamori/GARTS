@@ -23,6 +23,8 @@ void Townhall::Update()
 					char* debugOut = (char*)s.c_str();
 
 					Debug_String(debugOut);
+
+					worker->worker_state = WS_COLLECT_GOTO;
 				}
 			}
 		}
