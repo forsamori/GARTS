@@ -20,10 +20,17 @@ void Worker::Update()
 					if (gameObjectsRef->at(i)->OT == OT_RESOURCE && hasResources == false)
 					{
 						Resource* resource = (Resource*)gameObjectsRef->at(i);
-						resourceCarrying = resource->Harvest();
-						hasResources = true;
-						//SetSprite(defaultSprite);
-						worker_state = WS_COLLECT_RETURN;
+						if (resource->GetResourcesRemaining() != 0 && resource == resourceTarget)
+						{
+							resourceCarrying = resource->Harvest();
+							hasResources = true;
+							//SetSprite(defaultSprite);
+							worker_state = WS_COLLECT_RETURN;
+						}
+						else if (resource == resourceTarget)
+						{
+							worker_state = WS_COLLECT_INIT;
+						}
 						
 					}
 				}
@@ -62,18 +69,21 @@ void Worker::CollectCycle()
 	{
 	case WS_IDLE:
 	{
+		//notify worker is idle
+		//SOMETHING IS SETTING IT BACK TO COLLECT_INIT, FIND IT AND DESTROY IT.
 		break;
 	}
 	case WS_COLLECT_INIT:
 	{
-		std::vector<GameObject*> resources;
+		std::vector<Resource*> resources;
 		float closestDistance = 999999;
-		GameObject* closestResource = nullptr;
+		Resource* closestResource = nullptr;
+		resourceTarget = 0;
 		for (int i = 0; i < gameObjectsRef->size(); i++)
 		{
 			if (gameObjectsRef->at(i)->OT == OT_RESOURCE)
 			{
-				resources.push_back(gameObjectsRef->at(i));
+				resources.push_back((Resource*)gameObjectsRef->at(i));
 			}
 		}
 		for (int j = 0; j < resources.size(); j++)
@@ -84,11 +94,12 @@ void Worker::CollectCycle()
 			float xDist = resourcePosX - GetX();
 
 			float distance = sqrt((yDist*yDist) + (xDist*xDist));
-			if (distance < closestDistance)
+			if (distance < closestDistance && resources.at(j)->GetResourcesRemaining() > 0)
 			{
 				closestDistance = distance;
 				closestResource = resources.at(j);
 			}
+			
 
 		}
 		resourceTarget = closestResource;
@@ -97,7 +108,16 @@ void Worker::CollectCycle()
 	}
 	case WS_COLLECT_GOTO:
 	{
-		MoveToPoint(resourceTarget->GetX(), resourceTarget->GetY());
+		if (resourceTarget != nullptr)
+		{
+			MoveToPoint(resourceTarget->GetX(), resourceTarget->GetY());
+		}
+		else
+		{
+			//Could not find resources, go to idle.
+			noMoreResources = true;
+			worker_state = WS_IDLE;
+		}
 		break;
 	}
 	case WS_COLLECT_RETURN:

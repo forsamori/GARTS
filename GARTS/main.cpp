@@ -53,6 +53,13 @@ int main(int argc, char* args[])
 	gameObjects.push_back(resource);
 	gameObjectsRef.push_back(&resource);
 
+	Resource resource2 = Resource("..//media/resource.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	resource2.SetX(500.0f);
+	resource2.SetY(100.0f);
+	gameObjects.push_back(resource2);
+	gameObjectsRef.push_back(&resource2);
+
+
 	Worker worker = Worker("..//media/worker.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	worker.SetX(100.0f);
 	worker.SetY(300.0f);

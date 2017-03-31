@@ -35,3 +35,8 @@ void Resource::Render()
 		GameObject::Render();
 	}
 }
+
+int Resource::GetResourcesRemaining()
+{
+	return resourceRemaining;
+}

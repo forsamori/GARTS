@@ -18,6 +18,8 @@ public:
 	void Update();
 	void Render();
 
+	int GetResourcesRemaining();
+
 protected:
 
 private:

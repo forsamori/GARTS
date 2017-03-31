@@ -33,7 +33,13 @@ void AI::Update()
 				if (myUnits.at(i)->OT == OT_UNIT_WORKER)
 				{
 					Worker* tempWorker = (Worker*)myUnits.at(i);
-					if (tempWorker->worker_state != WS_COLLECT_GOTO && tempWorker->worker_state != WS_COLLECT_RETURN)
+
+
+					if (tempWorker->noMoreResources == true)
+					{
+						tempWorker->worker_state = WS_IDLE;
+					}
+					else if (tempWorker->worker_state != WS_COLLECT_GOTO && tempWorker->worker_state != WS_COLLECT_RETURN)
 					{
 						tempWorker->resourceHome = myTownhall;
 						tempWorker->worker_state = WS_COLLECT_INIT;
@@ -45,6 +51,7 @@ void AI::Update()
 		}
 		case AI_START_ARMY_PHASE:
 		{
+			
 			break;
 		}
 		case AI_MID_PHASE:

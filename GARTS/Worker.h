@@ -9,7 +9,8 @@ enum WORKER_STATE
 	WS_IDLE,
 	WS_COLLECT_INIT,
 	WS_COLLECT_GOTO,
-	WS_COLLECT_RETURN
+	WS_COLLECT_RETURN,
+	WS_FIND_NEW_RESOURCE
 };
 
 class Worker : public GameObject
@@ -23,6 +24,7 @@ public:
 		SetSpeed(0.1f);
 		carrySprite = Sprite("..//media/workerCarry", _renderer);
 		defaultSprite = GetSprite();
+		noMoreResources = false;
 		
 
 	}
@@ -34,9 +36,10 @@ public:
 
 	bool hasResources;
 	int resourceCarrying;
+	bool noMoreResources;
 	WORKER_STATE worker_state;
 
-	GameObject* resourceTarget;
+	Resource* resourceTarget;
 	GameObject* resourceHome;
 
 protected:
