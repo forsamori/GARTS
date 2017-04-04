@@ -43,6 +43,7 @@ GameObject::GameObject(std::string tex_path, SDL_Renderer* _renderer, std::vecto
 	sprite = Sprite(tex_path, _renderer);
 	width = sprite.GetWidth();
 	height = sprite.GetHeight();
+	health = 100;
 
 	owner = OWN_NONE;
 }
@@ -215,6 +216,11 @@ void GameObject::MoveToPoint(int _x, int _y)
 void GameObject::SetHealth(float _health)
 {
 	health = _health;
+}
+
+float GameObject::GetHealth()
+{
+	return health;
 }
 
 void GameObject::DrawBox()

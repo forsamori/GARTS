@@ -51,6 +51,7 @@ CURRENT: Get Barracks UI button to spawn units. Right now it can be selected (AS
 #include "Worker.h"
 #include "Townhall.h"
 #include "AI.h"
+#include "MilitaryUnit.h"
 
 //Const definitions
 const int SCREEN_WIDTH = 1024;

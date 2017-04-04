@@ -13,8 +13,10 @@
 enum ObjectType {
 	OT_UNIT,
 	OT_UNIT_WORKER,
+	OT_UNIT_SPEARMAN,
 	OT_RESOURCE,
-	OT_TOWNHALL
+	OT_TOWNHALL,
+	OT_BARRACKS
 };
 
 enum Owner {
@@ -73,6 +75,7 @@ public:
 	void MoveToPoint(int _x, int _y);
 
 	void SetHealth(float _health);
+	float GetHealth();
 
 	bool beginSpawn;
 

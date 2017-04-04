@@ -30,5 +30,16 @@ inline int Lerp(float t, int a, int b)
 	return (a + t*(b - a));
 }
 
+inline float randf()
+{ 
+	float result = static_cast <float> (rand()) / static_cast <float> (RAND_MAX / 100.0f);
+	return result;
+}
+inline float randf_ext(float min = 0.0f, float max = 100.0f)
+{
+	float result = min + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (max - min)));
+	return result;
+}
+
 
 #endif

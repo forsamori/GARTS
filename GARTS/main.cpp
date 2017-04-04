@@ -43,9 +43,18 @@ int main(int argc, char* args[])
 	Barracks barracks = Barracks("..//media/barracks.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	barracks.SetSpeed(0.0f);
 	barracks.SetX(400.0f);
-	barracks.SetY(400.0f);
+	barracks.SetY(700.0f);
 	gameObjects.push_back(barracks);
 	gameObjectsRef.push_back(&barracks);
+	barracks.owner = OWN_AI1;
+
+	Barracks barracks2 = Barracks("..//media/barracks.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	barracks2.SetSpeed(0.0f);
+	barracks2.SetX(400.0f);
+	barracks2.SetY(100.0f);
+	gameObjects.push_back(barracks2);
+	gameObjectsRef.push_back(&barracks2);
+	barracks2.owner = OWN_AI2;
 
 	Resource resource = Resource("..//media/resource.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	resource.SetX(200.0f);
@@ -66,6 +75,22 @@ int main(int argc, char* args[])
 	gameObjects.push_back(worker);
 	gameObjectsRef.push_back(&worker);
 	worker.owner = OWN_AI1;
+
+	MilitaryUnit milUnit1 = MilitaryUnit("..//media/workerCarry.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	MilitaryUnit milUnit2 = MilitaryUnit("..//media/workerCarry.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	
+	milUnit1.SetX(100.0f);
+	milUnit1.SetY(300.0f);
+	gameObjects.push_back(milUnit1);
+	gameObjectsRef.push_back(&milUnit1);
+	milUnit1.currentTarget = &milUnit2;
+
+	milUnit2.SetX(700.0f);
+	milUnit2.SetY(300.0f);
+	gameObjects.push_back(milUnit2);
+	gameObjectsRef.push_back(&milUnit2);
+	milUnit2.currentTarget = &milUnit1;
+	
 
 
 	Townhall townhall = Townhall("..//media/townhall.bmp", gRenderer, &gameObjectsRef, &gameObjects);
@@ -206,6 +231,12 @@ void Update()
 	for (int i = 0; i < vecSize; i++)
 	{
 		gameObjectsRef.at(i)->Update();
+		//Check if the size of the array has changed
+		int newVecSize = gameObjectsRef.size();
+		if (newVecSize != vecSize)
+		{
+			vecSize = newVecSize;
+		}
 	}
 
 	//Prevent redeclaration in loop using STATIC
@@ -232,8 +263,8 @@ void Update()
 		lerpreverse = false;
 	}
 	ai1.Update();
-	ai2.Update();
-	ai3.Update();
+	//ai2.Update();
+	//ai3.Update();
 }
 
 void Render()

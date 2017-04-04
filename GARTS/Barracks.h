@@ -2,6 +2,7 @@
 #define _BARRACKS_H
 
 #include "GameObject.h"
+#include "MilitaryUnit.h"
 #include "UI.h"
 
 
@@ -23,6 +24,7 @@ public:
 		barracksUnit = UI(1024, 768, "..//media/infSpawn.bmp", _renderer);
 		barracksUnit.SetX(1024 - barracksUnit.GetWidth());
 		barracksUnit.SetY(768 - barracksUnit.GetHeight());
+		OT = OT_BARRACKS;
 
 		//Update();
 	}
@@ -38,6 +40,7 @@ private:
 	GameObject spawnButton;
 	UI barracksUnit;
 	SDL_Event _event;
+
 
 };
 

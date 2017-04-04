@@ -10,10 +10,11 @@ void Barracks::SpawnUnit()
 	
 	//GameObject unit = GameObject("..//media/man.bmp", _renderer, _gameObjects);
 	
-	gameObjects->push_back(GameObject("..//media/man.bmp", renderer, gameObjectsRef, gameObjects));
-	gameObjects->back().SetSpeed(0.0f);
-	gameObjects->back().SetX(GetX());
-	gameObjects->back().SetY(GetY());
+	gameObjects->push_back(MilitaryUnit("..//media/man.bmp", renderer, gameObjectsRef, gameObjects));
+	gameObjects->back().SetSpeed(0.1f);
+	gameObjects->back().SetX(GetX() + randf_ext(0.0f, 25.0f));
+	gameObjects->back().SetY(GetY() + randf_ext(0.0f, 25.0f));
+	gameObjects->back().owner = owner;
 	gameObjectsRef->push_back(&gameObjects->back());
 
 	//Need to find a way of getting UnitManager to declare correctly. Could possibly use Helper Functions, though not sure.
