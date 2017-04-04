@@ -12,8 +12,8 @@ void Barracks::SpawnUnit()
 	
 	gameObjects->push_back(MilitaryUnit("..//media/man.bmp", renderer, gameObjectsRef, gameObjects));
 	gameObjects->back().SetSpeed(0.1f);
-	gameObjects->back().SetX(GetX() + randf_ext(0.0f, 25.0f));
-	gameObjects->back().SetY(GetY() + randf_ext(0.0f, 25.0f));
+	gameObjects->back().SetX(GetX() + randf_ext(0.0f, 50.0f));
+	gameObjects->back().SetY(GetY() + randf_ext(0.0f, 50.0f));
 	gameObjects->back().owner = owner;
 	gameObjectsRef->push_back(&gameObjects->back());
 

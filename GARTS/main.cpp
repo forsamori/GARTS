@@ -14,122 +14,97 @@ int main(int argc, char* args[])
 	gTitle.SetY(50);
 
 	tBackground = Texture("..//media/background.bmp", gRenderer);
-
-	sMan = Sprite("..//media/man.bmp", gRenderer);
-
-	test_object = GameObject("..//media/test.bmp", gRenderer, &gameObjectsRef, &gameObjects);
-	test_object.SetSpeed(0.02f);
-	test_object.SetX(100.0f);
-	test_object.SetY(50.0f);
-	//Add to GameObject member vector.
-	gameObjects.push_back(test_object);
-	gameObjectsRef.push_back(&test_object);
-
-	test_object2 = GameObject("..//media/test.bmp", gRenderer, &gameObjectsRef, &gameObjects);
-	test_object2.SetSpeed(0.02f);
-	test_object2.SetX(500.0f);
-	test_object2.SetY(200.0f);
-	gameObjects.push_back(test_object2);
-	gameObjectsRef.push_back(&test_object2);
-
-	test_object3 = GameObject("..//media/test.bmp", gRenderer, &gameObjectsRef, &gameObjects);
-	test_object3.SetSpeed(0.02f);
-	test_object3.SetX(300.0f);
-	test_object3.SetY(400.0f);
-	gameObjects.push_back(test_object3);
-	gameObjectsRef.push_back(&test_object3);
-
 	
+	
+	//AI1---------------------------
+	Townhall townhall = Townhall("..//media/townhall.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	townhall.SetX(0.0f);
+	townhall.SetY(0.0f);
+	gameObjects.push_back(townhall);
+	gameObjectsRef.push_back(&townhall);
+	townhall.owner = OWN_AI1;
+
 	Barracks barracks = Barracks("..//media/barracks.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	barracks.SetSpeed(0.0f);
-	barracks.SetX(400.0f);
-	barracks.SetY(700.0f);
+	barracks.SetX(0.0f);
+	barracks.SetY(150.0f);
 	gameObjects.push_back(barracks);
 	gameObjectsRef.push_back(&barracks);
 	barracks.owner = OWN_AI1;
-
-	Barracks barracks2 = Barracks("..//media/barracks.bmp", gRenderer, &gameObjectsRef, &gameObjects);
-	barracks2.SetSpeed(0.0f);
-	barracks2.SetX(400.0f);
-	barracks2.SetY(100.0f);
-	gameObjects.push_back(barracks2);
-	gameObjectsRef.push_back(&barracks2);
-	barracks2.owner = OWN_AI2;
 
 	Resource resource = Resource("..//media/resource.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	resource.SetX(200.0f);
 	resource.SetY(100.0f);
 	gameObjects.push_back(resource);
 	gameObjectsRef.push_back(&resource);
-
-	Resource resource2 = Resource("..//media/resource.bmp", gRenderer, &gameObjectsRef, &gameObjects);
-	resource2.SetX(500.0f);
-	resource2.SetY(100.0f);
-	gameObjects.push_back(resource2);
-	gameObjectsRef.push_back(&resource2);
-
-
-	Worker worker = Worker("..//media/worker.bmp", gRenderer, &gameObjectsRef, &gameObjects);
-	worker.SetX(100.0f);
-	worker.SetY(300.0f);
-	gameObjects.push_back(worker);
-	gameObjectsRef.push_back(&worker);
-	worker.owner = OWN_AI1;
-
-	MilitaryUnit milUnit1 = MilitaryUnit("..//media/workerCarry.bmp", gRenderer, &gameObjectsRef, &gameObjects);
-	MilitaryUnit milUnit2 = MilitaryUnit("..//media/workerCarry.bmp", gRenderer, &gameObjectsRef, &gameObjects);
-	
-	milUnit1.SetX(100.0f);
-	milUnit1.SetY(300.0f);
-	gameObjects.push_back(milUnit1);
-	gameObjectsRef.push_back(&milUnit1);
-	milUnit1.currentTarget = &milUnit2;
-
-	milUnit2.SetX(700.0f);
-	milUnit2.SetY(300.0f);
-	gameObjects.push_back(milUnit2);
-	gameObjectsRef.push_back(&milUnit2);
-	milUnit2.currentTarget = &milUnit1;
-	
-
-
-	Townhall townhall = Townhall("..//media/townhall.bmp", gRenderer, &gameObjectsRef, &gameObjects);
-	townhall.SetX(400.0f);
-	townhall.SetY(600.0f);
-	gameObjects.push_back(townhall);
-	gameObjectsRef.push_back(&townhall);
-	townhall.owner = OWN_AI1;
-
-	Worker worker2 = Worker("..//media/worker.bmp", gRenderer, &gameObjectsRef, &gameObjects);
-	worker2.SetX(100.0f);
-	worker2.SetY(300.0f);
-	gameObjects.push_back(worker2);
-	gameObjectsRef.push_back(&worker2);
-	worker2.owner = OWN_AI2;
-
-
+	//-------------------------------
+	//AI2----------------------------
 	Townhall townhall2 = Townhall("..//media/townhall.bmp", gRenderer, &gameObjectsRef, &gameObjects);
-	townhall2.SetX(600.0f);
-	townhall2.SetY(200.0f);
+	townhall2.SetX(SCREEN_WIDTH - townhall2.GetWidth());
+	townhall2.SetY(0.0f);
 	gameObjects.push_back(townhall2);
 	gameObjectsRef.push_back(&townhall2);
 	townhall2.owner = OWN_AI2;
 
-	Worker worker3 = Worker("..//media/worker.bmp", gRenderer, &gameObjectsRef, &gameObjects);
-	worker3.SetX(100.0f);
-	worker3.SetY(300.0f);
-	gameObjects.push_back(worker3);
-	gameObjectsRef.push_back(&worker3);
-	worker3.owner = OWN_AI3;
+	Barracks barracks2 = Barracks("..//media/barracks.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	barracks2.SetSpeed(0.0f);
+	barracks2.SetX(SCREEN_WIDTH - barracks2.GetWidth());
+	barracks2.SetY(150.0f);
+	gameObjects.push_back(barracks2);
+	gameObjectsRef.push_back(&barracks2);
+	barracks2.owner = OWN_AI2;
 
-
+	Resource resource2 = Resource("..//media/resource.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	resource2.SetX(SCREEN_WIDTH - 200.0f);
+	resource2.SetY(100.0f);
+	gameObjects.push_back(resource2);
+	gameObjectsRef.push_back(&resource2);
+	//-------------------------------
+	//AI3----------------------------
 	Townhall townhall3 = Townhall("..//media/townhall.bmp", gRenderer, &gameObjectsRef, &gameObjects);
-	townhall3.SetX(800.0f);
-	townhall3.SetY(300.0f);
+	townhall3.SetX(0.0f);
+	townhall3.SetY(SCREEN_HEIGHT - townhall3.GetHeight());
 	gameObjects.push_back(townhall3);
 	gameObjectsRef.push_back(&townhall3);
 	townhall3.owner = OWN_AI3;
 
+	Barracks barracks3 = Barracks("..//media/barracks.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	barracks3.SetSpeed(0.0f);
+	barracks3.SetX(0.0f);
+	barracks3.SetY(SCREEN_HEIGHT - barracks3.GetHeight() - 150.0f);
+	gameObjects.push_back(barracks3);
+	gameObjectsRef.push_back(&barracks3);
+	barracks3.owner = OWN_AI3;
+
+	Resource resource3 = Resource("..//media/resource.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	resource3.SetX(200.0f);
+	resource3.SetY(SCREEN_HEIGHT - 100.0f);
+	gameObjects.push_back(resource3);
+	gameObjectsRef.push_back(&resource3);
+	//-------------------------------
+	//AI4----------------------------
+
+	Townhall townhall4 = Townhall("..//media/townhall.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	townhall4.SetX(SCREEN_WIDTH - townhall4.GetWidth());
+	townhall4.SetY(SCREEN_HEIGHT - townhall4.GetHeight());
+	gameObjects.push_back(townhall4);
+	gameObjectsRef.push_back(&townhall4);
+	townhall4.owner = OWN_AI4;
+
+	Barracks barracks4 = Barracks("..//media/barracks.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	barracks4.SetSpeed(0.0f);
+	barracks4.SetX(SCREEN_WIDTH - barracks4.GetWidth());
+	barracks4.SetY(SCREEN_HEIGHT - barracks4.GetHeight() - 150.0f);
+	gameObjects.push_back(barracks4);
+	gameObjectsRef.push_back(&barracks4);
+	barracks4.owner = OWN_AI4;
+
+	Resource resource4 = Resource("..//media/resource.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	resource4.SetX(SCREEN_WIDTH - 200.0f);
+	resource4.SetY(SCREEN_HEIGHT - 100.0f);
+	gameObjects.push_back(resource4);
+	gameObjectsRef.push_back(&resource4);
+	//-------------------------------
 	//ai1 = AI(&gameObjectsRef, &gameObjects, OWN_AI1);
 
 
@@ -225,8 +200,7 @@ bool loadMedia()
 
 void Update()
 {
-	sMan.Update();
-	//test_object.Update();
+
 	int vecSize = gameObjectsRef.size();
 	for (int i = 0; i < vecSize; i++)
 	{
@@ -263,8 +237,8 @@ void Update()
 		lerpreverse = false;
 	}
 	ai1.Update();
-	//ai2.Update();
-	//ai3.Update();
+	ai2.Update();
+	ai3.Update();
 }
 
 void Render()
@@ -277,8 +251,6 @@ void Render()
 	tBackground.Render();
 
 	gTitle.Render();
-
-	sMan.Render();
 
 	int vecSize = gameObjectsRef.size();
 	for (int i = 0; i < vecSize; i++)
