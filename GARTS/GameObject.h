@@ -14,6 +14,8 @@ enum ObjectType {
 	OT_UNIT,
 	OT_UNIT_WORKER,
 	OT_UNIT_SPEARMAN,
+	OT_UNIT_ARCHER,
+	OT_UNIT_KNIGHT,
 	OT_RESOURCE,
 	OT_TOWNHALL,
 	OT_BARRACKS
@@ -29,6 +31,17 @@ enum Owner {
 	OWN_AI5,
 	OWN_AI6,
 	OWN_AI7
+};
+
+enum UNIT_STATE
+{
+	US_IDLE,
+	US_MOVE,
+	US_MOVE_ENGAGE,
+	US_ENGAGE,
+	US_RETREAT,
+	US_DIE
+	//Make states here.
 };
 
 
@@ -77,10 +90,27 @@ public:
 	void SetHealth(float _health);
 	float GetHealth();
 
+	void MilInit();
+	void DoAttack();
+	void SetTarget(GameObject* target);
+
+	bool GetActive();
+	void SetActive();
+
 	bool beginSpawn;
 
 	ObjectType OT;
 	Owner owner;
+
+	//Mil unit stuff
+
+	UNIT_STATE unit_state;
+	UNIT_STATE prev_unit_state;
+	//int health;
+	GameObject* currentTarget = nullptr;
+	GameObject* unitHome;
+
+	bool inRaidingParty = false;
 
 protected:
 	std::vector<GameObject*>* gameObjectsRef;
@@ -111,7 +141,19 @@ private:
 
 	float speed;
 
+	//MilUnit stuff
+	int attackVal;
+	ObjectType counter;
 
+	float moveSpeed;
+	float attackSpeed;
+	float attackCooldown;
+
+	float xTarget;
+	float yTarget;
+
+	bool isMilUnit = false;
+	bool active;
 };
 
 #endif

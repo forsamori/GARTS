@@ -15,6 +15,7 @@ GameObject::GameObject()
 	selected = false;
 	velocity.x = 0;
 	velocity.y = 0;
+	active = true;
 
 	speed = 0;
 }
@@ -46,6 +47,10 @@ GameObject::GameObject(std::string tex_path, SDL_Renderer* _renderer, std::vecto
 	health = 100;
 
 	owner = OWN_NONE;
+
+	active = true;
+
+	inRaidingParty = false;
 }
 
 GameObject::~GameObject()
@@ -124,6 +129,125 @@ void GameObject::SetAngle(int _angle)
 
 void GameObject::Update()
 {
+
+	
+	if (GetHealth() <= 0)
+	{
+		//FUTURE SAM: Find a good way of destroying objects
+		//safely. You may need to pop them off the gameObjects lists
+		for (int i = 0; i < gameObjectsRef->size(); i++)
+		{
+			if (gameObjectsRef->at(i) == this)
+			{
+				gameObjectsRef->erase(gameObjectsRef->begin() + i);
+				gameObjects->erase(gameObjects->begin() + i);
+				active = false;
+			}
+		}
+
+	}
+
+	if (isMilUnit == true)
+	{
+
+		switch (unit_state)
+		{
+		case US_IDLE:
+		{
+			if (prev_unit_state != unit_state)
+			{
+				Debug_String("US_IDLE");
+			}
+			break;
+		}
+		case US_MOVE:
+		{
+			if (prev_unit_state != unit_state)
+			{
+				Debug_String("US_MOVE");
+			}
+			MoveToPoint(xTarget, yTarget);
+			break;
+		}
+		case US_MOVE_ENGAGE:
+		{
+			if (prev_unit_state != unit_state)
+			{
+				Debug_String("US_MOVE_ENGAGE");
+			}
+			if (currentTarget != nullptr)
+			{
+				MoveToPoint(currentTarget->GetX(), currentTarget->GetY());
+				if (AABBCollision(this, currentTarget))
+				{
+					unit_state = US_ENGAGE;
+				}
+			}
+			else
+			{
+				unit_state = US_RETREAT;
+			}
+			break;
+		}
+		case US_ENGAGE:
+		{
+			if (prev_unit_state != unit_state)
+			{
+				Debug_String("US_ENGAGE");
+			}
+			if (currentTarget != nullptr)
+			{
+				if (AABBCollision(this, currentTarget))
+				{
+					if (attackCooldown <= 0.0f)
+					{
+						DoAttack();
+						attackCooldown = 1.0f;
+					}
+					if (currentTarget->GetHealth() <= 0.0f)
+					{
+						currentTarget = nullptr;
+					}
+					attackCooldown -= attackSpeed;
+				}
+				else
+				{
+					unit_state = US_MOVE_ENGAGE;
+				}
+
+	
+			}
+			break;
+		}
+
+		case US_RETREAT:
+		{
+			if (prev_unit_state != unit_state)
+			{
+				Debug_String("US_RETREAT");
+			}
+			if (unitHome != nullptr)
+			{
+				MoveToPoint(unitHome->GetX(), unitHome->GetY());
+				if (AABBCollision(this, unitHome))
+				{
+					unit_state = US_IDLE;
+				}
+				
+			}
+			break;
+		}
+		case US_DIE:
+		{
+			if (prev_unit_state != unit_state)
+			{
+				Debug_String("US_DIE");
+			}
+			break;
+		}
+		}
+	}
+
 	//Move using velocity
 	xPos += velocity.x;
 	yPos += velocity.y;
@@ -141,6 +265,7 @@ void GameObject::Update()
 	sprite.SetY(yPos);
 	sprite.Update();
 
+	prev_unit_state = unit_state;
 
 }
 //Justin was here, 14/02/17  15:57
@@ -221,6 +346,52 @@ void GameObject::SetHealth(float _health)
 float GameObject::GetHealth()
 {
 	return health;
+}
+
+void GameObject::MilInit()
+{
+	attackSpeed = 0.1f;
+	attackCooldown = 1.0f;
+	attackVal = 1.0f;
+	SetHealth(100.0f);
+
+	SetSpeed(0.1f);
+
+	inRaidingParty = false;
+
+	unit_state = US_MOVE_ENGAGE;
+	OT = OT_UNIT_SPEARMAN;
+
+	isMilUnit = true;
+
+}
+
+void GameObject::DoAttack()
+{
+	float targetHealth = currentTarget->GetHealth();
+	targetHealth -= attackVal;
+	currentTarget->SetHealth(targetHealth);
+
+	std::string s = "tHealth: ";
+	s.append(std::to_string(targetHealth).c_str());
+	char* debugOut = (char*)s.c_str();
+
+	Debug_String(debugOut);
+}
+
+void GameObject::SetTarget(GameObject * target)
+{
+	currentTarget = target;
+}
+
+bool GameObject::GetActive()
+{
+	return active;
+}
+
+void GameObject::SetActive()
+{
+	active = true;
 }
 
 void GameObject::DrawBox()
