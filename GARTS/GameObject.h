@@ -10,7 +10,10 @@
 
 //extern std::vector<GameObject> gameObjects;
 
-enum ObjectType {
+//Changed to enum class due to logical comparison
+//failure. This is a c++11 feature and allows
+//enums to be compared against each other.
+enum class ObjectType {
 	OT_UNIT,
 	OT_UNIT_WORKER,
 	OT_UNIT_SPEARMAN,
@@ -21,7 +24,7 @@ enum ObjectType {
 	OT_BARRACKS
 };
 
-enum Owner {
+enum class Owner {
 	OWN_NONE,
 	OWN_P1,
 	OWN_AI1,
@@ -33,7 +36,7 @@ enum Owner {
 	OWN_AI7
 };
 
-enum UNIT_STATE
+enum class UNIT_STATE
 {
 	US_IDLE,
 	US_MOVE,

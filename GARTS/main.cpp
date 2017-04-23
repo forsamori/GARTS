@@ -26,7 +26,7 @@ int main(int argc, char* args[])
 	townhall.SetY(0.0f);
 	gameObjects.push_back(townhall);
 	gameObjectsRef.push_back(&townhall);
-	townhall.owner = OWN_AI1;
+	townhall.owner = Owner::OWN_AI1;
 
 	Barracks barracks = Barracks("..//media/barracks.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	barracks.SetSpeed(0.0f);
@@ -34,7 +34,7 @@ int main(int argc, char* args[])
 	barracks.SetY(150.0f);
 	gameObjects.push_back(barracks);
 	gameObjectsRef.push_back(&barracks);
-	barracks.owner = OWN_AI1;
+	barracks.owner = Owner::OWN_AI1;
 
 	Resource resource = Resource("..//media/resource.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	resource.SetX(200.0f);
@@ -47,7 +47,7 @@ int main(int argc, char* args[])
 	worker.SetY(150.0f);
 	gameObjects.push_back(worker);
 	gameObjectsRef.push_back(&worker);
-	worker.owner = OWN_AI1;
+	worker.owner = Owner::OWN_AI1;
 	//-------------------------------
 	//AI2----------------------------
 	Townhall townhall2 = Townhall("..//media/townhall.bmp", gRenderer, &gameObjectsRef, &gameObjects);
@@ -55,7 +55,7 @@ int main(int argc, char* args[])
 	townhall2.SetY(0.0f);
 	gameObjects.push_back(townhall2);
 	gameObjectsRef.push_back(&townhall2);
-	townhall2.owner = OWN_AI2;
+	townhall2.owner = Owner::OWN_AI2;
 
 	Barracks barracks2 = Barracks("..//media/barracks.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	barracks2.SetSpeed(0.0f);
@@ -63,7 +63,7 @@ int main(int argc, char* args[])
 	barracks2.SetY(150.0f);
 	gameObjects.push_back(barracks2);
 	gameObjectsRef.push_back(&barracks2);
-	barracks2.owner = OWN_AI2;
+	barracks2.owner = Owner::OWN_AI2;
 
 	Resource resource2 = Resource("..//media/resource.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	resource2.SetX(SCREEN_WIDTH - 200.0f);
@@ -76,7 +76,7 @@ int main(int argc, char* args[])
 	worker2.SetY(150.0f);
 	gameObjects.push_back(worker2);
 	gameObjectsRef.push_back(&worker2);
-	worker2.owner = OWN_AI2;
+	worker2.owner = Owner::OWN_AI2;
 	//-------------------------------
 	//AI3----------------------------
 	Townhall townhall3 = Townhall("..//media/townhall.bmp", gRenderer, &gameObjectsRef, &gameObjects);
@@ -84,7 +84,7 @@ int main(int argc, char* args[])
 	townhall3.SetY(SCREEN_HEIGHT - townhall3.GetHeight());
 	gameObjects.push_back(townhall3);
 	gameObjectsRef.push_back(&townhall3);
-	townhall3.owner = OWN_AI3;
+	townhall3.owner = Owner::OWN_AI3;
 
 	Barracks barracks3 = Barracks("..//media/barracks.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	barracks3.SetSpeed(0.0f);
@@ -92,7 +92,7 @@ int main(int argc, char* args[])
 	barracks3.SetY(SCREEN_HEIGHT - barracks3.GetHeight() - 150.0f);
 	gameObjects.push_back(barracks3);
 	gameObjectsRef.push_back(&barracks3);
-	barracks3.owner = OWN_AI3;
+	barracks3.owner = Owner::OWN_AI3;
 
 	Resource resource3 = Resource("..//media/resource.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	resource3.SetX(200.0f);
@@ -105,7 +105,7 @@ int main(int argc, char* args[])
 	worker3.SetY(SCREEN_HEIGHT - barracks3.GetHeight() - 150.0f);
 	gameObjects.push_back(worker3);
 	gameObjectsRef.push_back(&worker3);
-	worker3.owner = OWN_AI3;
+	worker3.owner = Owner::OWN_AI3;
 	//-------------------------------
 	//AI4----------------------------
 
@@ -114,7 +114,7 @@ int main(int argc, char* args[])
 	townhall4.SetY(SCREEN_HEIGHT - townhall4.GetHeight());
 	gameObjects.push_back(townhall4);
 	gameObjectsRef.push_back(&townhall4);
-	townhall4.owner = OWN_AI4;
+	townhall4.owner = Owner::OWN_AI4;
 
 	Barracks barracks4 = Barracks("..//media/barracks.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	barracks4.SetSpeed(0.0f);
@@ -122,7 +122,7 @@ int main(int argc, char* args[])
 	barracks4.SetY(SCREEN_HEIGHT - barracks4.GetHeight() - 150.0f);
 	gameObjects.push_back(barracks4);
 	gameObjectsRef.push_back(&barracks4);
-	barracks4.owner = OWN_AI4;
+	barracks4.owner = Owner::OWN_AI4;
 
 	Resource resource4 = Resource("..//media/resource.bmp", gRenderer, &gameObjectsRef, &gameObjects);
 	resource4.SetX(SCREEN_WIDTH - 200.0f);
@@ -135,7 +135,7 @@ int main(int argc, char* args[])
 	worker4.SetY(SCREEN_HEIGHT - barracks4.GetHeight() - 150.0f);
 	gameObjects.push_back(worker4);
 	gameObjectsRef.push_back(&worker4);
-	worker4.owner = OWN_AI4;
+	worker4.owner = Owner::OWN_AI4;
 	//-------------------------------
 	//ai1 = AI(&gameObjectsRef, &gameObjects, OWN_AI1);
 
@@ -201,6 +201,7 @@ bool init()
 				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
 				success = false;
 			}
+			//StoreRenderer(gRenderer);
 
 		}
 	}

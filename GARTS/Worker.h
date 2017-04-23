@@ -20,7 +20,7 @@ public:
 	Worker(std::string tex_path, SDL_Renderer* _renderer, std::vector<GameObject*>* _gameObjectsRef, std::vector<GameObject>* _gameObjects) : GameObject(tex_path, _renderer, _gameObjectsRef, _gameObjects)
 	{
 		hasResources = false;
-		OT = OT_UNIT_WORKER;
+		OT = ObjectType::OT_UNIT_WORKER;
 		worker_state = WS_IDLE;
 		SetSpeed(0.1f);
 		carrySprite = Sprite("..//media/workerCarry", _renderer);

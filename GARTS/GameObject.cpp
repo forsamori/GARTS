@@ -46,7 +46,7 @@ GameObject::GameObject(std::string tex_path, SDL_Renderer* _renderer, std::vecto
 	height = sprite.GetHeight();
 	health = 100;
 
-	owner = OWN_NONE;
+	owner = Owner::OWN_NONE;
 
 	active = true;
 
@@ -152,7 +152,7 @@ void GameObject::Update()
 
 		switch (unit_state)
 		{
-		case US_IDLE:
+		case UNIT_STATE::US_IDLE:
 		{
 			if (prev_unit_state != unit_state)
 			{
@@ -160,42 +160,42 @@ void GameObject::Update()
 			}
 			break;
 		}
-		case US_MOVE:
+		case UNIT_STATE::US_MOVE:
 		{
-			if (prev_unit_state != unit_state)
-			{
+			//if (prev_unit_state != unit_state)
+			//{
 				Debug_String("US_MOVE");
-			}
+			//}
 			MoveToPoint(xTarget, yTarget);
 			break;
 		}
-		case US_MOVE_ENGAGE:
+		case UNIT_STATE::US_MOVE_ENGAGE:
 		{
-			if (prev_unit_state != unit_state)
-			{
+			//if (prev_unit_state != unit_state)
+			//{
 				Debug_String("US_MOVE_ENGAGE");
-			}
+			//}
 			if (currentTarget != nullptr)
 			{
 				MoveToPoint(currentTarget->GetX(), currentTarget->GetY());
 				if (AABBCollision(this, currentTarget))
 				{
-					unit_state = US_ENGAGE;
+					unit_state = UNIT_STATE::US_ENGAGE;
 				}
 			}
 			else
 			{
-				unit_state = US_RETREAT;
+				unit_state = UNIT_STATE::US_RETREAT;
 			}
 			break;
 		}
-		case US_ENGAGE:
+		case UNIT_STATE::US_ENGAGE:
 		{
-			if (prev_unit_state != unit_state)
-			{
+			//if (prev_unit_state != unit_state)
+			//{
 				Debug_String("US_ENGAGE");
-			}
-			if (currentTarget != nullptr)
+			//}
+ 			if (currentTarget != nullptr)
 			{
 				if (AABBCollision(this, currentTarget))
 				{
@@ -212,32 +212,38 @@ void GameObject::Update()
 				}
 				else
 				{
-					unit_state = US_MOVE_ENGAGE;
+					unit_state = UNIT_STATE::US_MOVE_ENGAGE;
 				}
 
 	
 			}
+			else
+			{
+				unit_state = UNIT_STATE::US_RETREAT;
+			}
 			break;
 		}
 
-		case US_RETREAT:
+		case UNIT_STATE::US_RETREAT:
 		{
-			if (prev_unit_state != unit_state)
-			{
+			//if (prev_unit_state != unit_state)
+			//{
 				Debug_String("US_RETREAT");
-			}
+			//}
 			if (unitHome != nullptr)
 			{
-				MoveToPoint(unitHome->GetX(), unitHome->GetY());
+				int deviation = rand_range(0, 50);
+				MoveToPoint(unitHome->GetX()+deviation, unitHome->GetY()+deviation);
 				if (AABBCollision(this, unitHome))
 				{
-					unit_state = US_IDLE;
+					inRaidingParty = false;
+					unit_state = UNIT_STATE::US_IDLE;
 				}
 				
 			}
 			break;
 		}
-		case US_DIE:
+		case UNIT_STATE::US_DIE:
 		{
 			if (prev_unit_state != unit_state)
 			{
@@ -359,8 +365,8 @@ void GameObject::MilInit()
 
 	inRaidingParty = false;
 
-	unit_state = US_MOVE_ENGAGE;
-	OT = OT_UNIT_SPEARMAN;
+	unit_state = UNIT_STATE::US_MOVE_ENGAGE;
+	OT = ObjectType::OT_UNIT_SPEARMAN;
 
 	isMilUnit = true;
 

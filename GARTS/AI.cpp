@@ -14,9 +14,9 @@ void AI::Update()
 			RefreshUnitList();
 			for (int j = 0; j < myUnits.size(); j++)
 			{
-				if (myUnits.at(j)->OT == OT_TOWNHALL)
+				if (myUnits.at(j)->OT == ObjectType::OT_TOWNHALL)
 					myTownhall = (Townhall*)myUnits.at(j);
-				if (myUnits.at(j)->OT == OT_BARRACKS)
+				if (myUnits.at(j)->OT == ObjectType::OT_BARRACKS)
 					myBarracks = (Barracks*)myUnits.at(j);
 			}
 			currAIState = AI_START_COLLECT_PHASE;
@@ -27,7 +27,7 @@ void AI::Update()
 		{
 			for (int i = 0; i < myUnits.size(); i++)
 			{
-				if (myUnits.at(i)->OT == OT_UNIT_WORKER)
+				if (myUnits.at(i)->OT == ObjectType::OT_UNIT_WORKER)
 				{
 					Worker* tempWorker = (Worker*)myUnits.at(i);
 
@@ -54,7 +54,7 @@ void AI::Update()
 		{
 			for (int i = 0; i < myUnits.size(); i++)
 			{
-				if (myUnits.at(i)->OT == OT_UNIT_WORKER)
+				if (myUnits.at(i)->OT == ObjectType::OT_UNIT_WORKER)
 				{
 					Worker* tempWorker = (Worker*)myUnits.at(i);
 
@@ -80,7 +80,7 @@ void AI::Update()
 				for (int i = 0; i < myUnits.size(); i++)
 				{
 					//TODO: Refactor this to point to spearmen
-					if (myUnits.at(i)->OT == OT_UNIT_SPEARMAN)
+					if (myUnits.at(i)->OT == ObjectType::OT_UNIT_SPEARMAN)
 					{
 						milCount++;
 					}
@@ -115,7 +115,7 @@ void AI::Update()
 					else if (spawnResult <= SPAWN_CHANCE_SPEARMAN &&
 						spawnResult > SPAWN_CHANCE_ARCHER)
 					{
-						myBarracks->SpawnUnit(OT_UNIT_SPEARMAN, &myUnits);
+						myBarracks->SpawnUnit(ObjectType::OT_UNIT_SPEARMAN, &myUnits);
 						myTownhall->resources -= COST_SPEARMAN;
 					}
 
@@ -148,9 +148,9 @@ void AI::Update()
 				int unitSelection = rand_range(0, myUnits.size()-1);
 				if (myRaiders.size() < NO_OF_RAIDERS)
 				{
-					if (myUnits.at(unitSelection)->OT == OT_UNIT_SPEARMAN ||
-						myUnits.at(unitSelection)->OT == OT_UNIT_ARCHER ||
-						myUnits.at(unitSelection)->OT == OT_UNIT_KNIGHT)
+					if (myUnits.at(unitSelection)->OT == ObjectType::OT_UNIT_SPEARMAN ||
+						myUnits.at(unitSelection)->OT == ObjectType::OT_UNIT_ARCHER ||
+						myUnits.at(unitSelection)->OT == ObjectType::OT_UNIT_KNIGHT)
 					{
 						if (myUnits.at(unitSelection)->inRaidingParty == false)
 						{
@@ -171,14 +171,14 @@ void AI::Update()
 			{
 				for (int i = 0; i < gameObjectsRef->size(); i++)
 				{
-					if (gameObjectsRef->at(i)->owner != owner);
+					if (gameObjectsRef->at(i)->owner != owner)
 					{
 						enemyUnits.push_back(gameObjectsRef->at(i));
 					}
 				}
 				
-				Owner targetOwner = OWN_NONE;								 //Remove 
-				while (targetOwner == OWN_NONE || targetOwner == owner || targetOwner == OWN_P1)
+				Owner targetOwner = Owner::OWN_NONE;								 //Remove 
+				while (targetOwner == Owner::OWN_NONE || targetOwner == owner || targetOwner == Owner::OWN_P1)
 				{
 					targetOwner = static_cast<Owner>((rand() % 4) + 1); //TODO: Change this to 8
 				}
@@ -204,11 +204,11 @@ void AI::Update()
 			{
 				for (int i = 0; i < myRaiders.size(); i++)
 				{
-					if (myRaiders.at(i)->unit_state == US_ENGAGE)
+					if (myRaiders.at(i)->unit_state == UNIT_STATE::US_ENGAGE)
 					{
 						currRaidState = RD_ENGAGE;
 					}
-					myRaiders.at(i)->unit_state = US_MOVE_ENGAGE;
+					myRaiders.at(i)->unit_state = UNIT_STATE::US_MOVE_ENGAGE;
 				}
 
 				//Select all myRaiders use MOVE_TO_POINT
@@ -233,14 +233,22 @@ void AI::Update()
 				{
 					if (myRaiders.at(i)->currentTarget == NULL)
 					{
-						if (targetUnits.size() > 0)
+						int newTargetChance = rand_range(0, 100);
+						if (newTargetChance <= NEWTARGET_CHANCE)
 						{
-							int randTarget = rand_range(0, targetUnits.size() - 1);
-							myRaiders.at(i)->SetTarget(targetUnits.at(randTarget));
+							if (targetUnits.size() > 0)
+							{
+								int randTarget = rand_range(0, targetUnits.size() - 1);
+								myRaiders.at(i)->SetTarget(targetUnits.at(randTarget));
+							}
+							else
+							{
+								//Engagement complete
+								currRaidState = RD_RETREAT;
+							}
 						}
 						else
 						{
-							//Engagement complete
 							currRaidState = RD_RETREAT;
 						}
 					}
@@ -263,7 +271,7 @@ void AI::Update()
 			{
 				for (int i = 0; i < myRaiders.size(); i++)
 				{
-					myRaiders.at(i)->unit_state = US_RETREAT;
+					myRaiders.at(i)->unit_state = UNIT_STATE::US_RETREAT;
 				}
 				currRaidState = RD_EVALUATE;
 				break;
@@ -392,7 +400,7 @@ void AI::Update()
 			break;
 		}
 		std::string s = "AI: ";
-		s.append(std::to_string(owner).c_str());
+		//s.append(std::to_string(owner).c_str());
 		s.append(" entered STATE: ");
 		s.append(currStateOut);
 		s.append(" from STATE: ");

@@ -17,8 +17,8 @@ void MilitaryUnit::Init()
 
 	inRaidingParty = false;
 
-	unit_state = US_MOVE_ENGAGE;
-	OT = OT_UNIT_SPEARMAN;
+	unit_state = UNIT_STATE::US_MOVE_ENGAGE;
+	OT = ObjectType::OT_UNIT_SPEARMAN;
 }
 
 void MilitaryUnit::Update()
@@ -41,25 +41,25 @@ void MilitaryUnit::Update()
 
 	switch (unit_state)
 	{
-	case US_IDLE:
+	case UNIT_STATE::US_IDLE:
 		break;
-	case US_MOVE:
+	case UNIT_STATE::US_MOVE:
 	{
 		MoveToPoint(xTarget, yTarget);
 		break;
 	}
-	case US_MOVE_ENGAGE:
+	case UNIT_STATE::US_MOVE_ENGAGE:
 	{
 		if (currentTarget != nullptr)
 		{
 			MoveToPoint(currentTarget->GetX(), currentTarget->GetY());
 			if (AABBCollision(this, currentTarget))
 			{
-				unit_state = US_ENGAGE;
+				unit_state = UNIT_STATE::US_ENGAGE;
 			}
 		}
 	}
-	case US_ENGAGE:
+	case UNIT_STATE::US_ENGAGE:
 	{
 		if (AABBCollision(this, currentTarget))
 		{
@@ -74,16 +74,16 @@ void MilitaryUnit::Update()
 		break;
 	}
 		
-	case US_RETREAT:
+	case UNIT_STATE::US_RETREAT:
 	{
 		MoveToPoint(unitHome->GetX(), unitHome->GetY());
 		if (AABBCollision(this, unitHome))
 		{
-			unit_state = US_IDLE;
+			unit_state = UNIT_STATE::US_IDLE;
 		}
 		break;
 	}
-	case US_DIE:
+	case UNIT_STATE::US_DIE:
 		break;
 	}
 

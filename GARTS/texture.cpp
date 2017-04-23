@@ -7,6 +7,9 @@ Texture::Texture()
 	xPos = 0;
 	yPos = 0;
 	texture = NULL;
+	renderer = NULL;
+	
+	path = "..//media/no_tex.bmp";
 	Load();
 }
 
@@ -38,11 +41,12 @@ bool Texture::Load()
 	{
 		printf("Unable to load image %s! SDL_ERROR: %s\n", path.c_str(), SDL_GetError());
 	}
-	else
+	else if (renderer != NULL)
 	{
 		//Colour key image
 		SDL_SetColorKey(surf, SDL_TRUE, SDL_MapRGB(surf->format, 0xFF, 0xFF, 0xFF));
 		tex = SDL_CreateTextureFromSurface(renderer, surf);
+
 		if (tex == NULL)
 		{
 			printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());

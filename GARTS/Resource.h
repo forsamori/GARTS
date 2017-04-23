@@ -10,7 +10,7 @@ public:
 
 	Resource(std::string tex_path, SDL_Renderer* _renderer, std::vector<GameObject*>* _gameObjectsRef, std::vector<GameObject>* _gameObjects) : GameObject(tex_path, _renderer, _gameObjectsRef, _gameObjects)
 	{
-		OT = OT_RESOURCE;
+		OT = ObjectType::OT_RESOURCE;
 		resourceRemaining = 10000;
 	}
 	~Resource();

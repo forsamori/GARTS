@@ -2,6 +2,7 @@
 #define _TEXTURE_H
 
 #include "SDL.h"
+//#include "helper_functions.h"
 #include <iostream>
 
 

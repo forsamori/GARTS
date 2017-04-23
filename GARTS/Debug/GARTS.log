@@ -1,27 +1,8 @@
-﻿Build started 23/04/2017 12:41:29.
+﻿Build started 23/04/2017 23:41:16.
      1>Project "C:\GARTS\GARTS\GARTS\GARTS.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /IC:\GARTS\GARTS\Appollo /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt AI.cpp
-         AI.cpp
-     1>c:\garts\garts\garts\helper_functions.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-     1>c:\garts\garts\garts\militaryunit.h(31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-     1>c:\garts\garts\garts\ai.h(13): warning C4305: 'initializing': truncation from 'double' to 'float'
-     1>c:\garts\garts\garts\ai.cpp(18): warning C4018: '<': signed/unsigned mismatch
-     1>c:\garts\garts\garts\ai.cpp(31): warning C4018: '<': signed/unsigned mismatch
-     1>c:\garts\garts\garts\ai.cpp(58): warning C4018: '<': signed/unsigned mismatch
-     1>c:\garts\garts\garts\ai.cpp(83): warning C4018: '<': signed/unsigned mismatch
-     1>c:\garts\garts\garts\ai.cpp(122): warning C4244: '-=': conversion from 'const float' to 'int', possible loss of data
-     1>c:\garts\garts\garts\ai.cpp(175): warning C4018: '<': signed/unsigned mismatch
-     1>c:\garts\garts\garts\ai.cpp(190): warning C4018: '<': signed/unsigned mismatch
-     1>c:\garts\garts\garts\ai.cpp(199): warning C4018: '<': signed/unsigned mismatch
-     1>c:\garts\garts\garts\ai.cpp(208): warning C4018: '<': signed/unsigned mismatch
-     1>c:\garts\garts\garts\ai.cpp(226): warning C4018: '<': signed/unsigned mismatch
-     1>c:\garts\garts\garts\ai.cpp(235): warning C4018: '<': signed/unsigned mismatch
-     1>c:\garts\garts\garts\ai.cpp(256): warning C4018: '<': signed/unsigned mismatch
-     1>c:\garts\garts\garts\ai.cpp(267): warning C4018: '<': signed/unsigned mismatch
-     1>c:\garts\garts\garts\ai.cpp(277): warning C4018: '<': signed/unsigned mismatch
-     1>c:\garts\garts\garts\ai.cpp(177): warning C4390: ';': empty controlled statement found; is this the intent?
-     1>c:\garts\garts\garts\ai.cpp(424): warning C4018: '<': signed/unsigned mismatch
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /IC:\GARTS\GARTS\Appollo /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt texture.cpp
+         texture.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\GARTS\GARTS\Debug\GARTS.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\GARTS\GARTS\Debug\GARTS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\GARTS\GARTS\Debug\GARTS.lib" /MACHINE:X86 Debug\AI.obj
          Debug\Archer.obj
@@ -44,4 +25,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.14
+Time Elapsed 00:00:00.64

@@ -17,7 +17,7 @@ void Worker::Update()
 			{
 				if (worker_state == WS_COLLECT_GOTO)
 				{
-					if (gameObjectsRef->at(i)->OT == OT_RESOURCE && hasResources == false)
+					if (gameObjectsRef->at(i)->OT == ObjectType::OT_RESOURCE && hasResources == false)
 					{
 						Resource* resource = (Resource*)gameObjectsRef->at(i);
 						if (resource->GetResourcesRemaining() != 0 && resource == resourceTarget)
@@ -37,7 +37,7 @@ void Worker::Update()
 				else if (worker_state == WS_COLLECT_RETURN)
 				{
 					//SetSprite(&carrySprite);
-					if (gameObjectsRef->at(i)->OT == OT_TOWNHALL)
+					if (gameObjectsRef->at(i)->OT == ObjectType::OT_TOWNHALL)
 					{
 						if (hasResources == true)
 						{
@@ -81,7 +81,7 @@ void Worker::CollectCycle()
 		resourceTarget = 0;
 		for (int i = 0; i < gameObjectsRef->size(); i++)
 		{
-			if (gameObjectsRef->at(i)->OT == OT_RESOURCE)
+			if (gameObjectsRef->at(i)->OT == ObjectType::OT_RESOURCE)
 			{
 				resources.push_back((Resource*)gameObjectsRef->at(i));
 			}

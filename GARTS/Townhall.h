@@ -14,7 +14,7 @@ public:
 	//Barracks(std::string tex_path, SDL_Renderer* _renderer);
 	Townhall(std::string tex_path, SDL_Renderer* _renderer, std::vector<GameObject*>* _gameObjectsRef, std::vector<GameObject>* _gameObjects) : GameObject(tex_path, _renderer, _gameObjectsRef, _gameObjects)
 	{
-		OT = OT_TOWNHALL;
+		OT = ObjectType::OT_TOWNHALL;
 	}
 
 	~Townhall();

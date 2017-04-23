@@ -12,8 +12,8 @@ public:
 
 		SetSpeed(0.1f);
 
-		unit_state = US_MOVE_ENGAGE;
-		OT = OT_UNIT_KNIGHT;
+		unit_state = UNIT_STATE::US_MOVE_ENGAGE;
+		OT = ObjectType::OT_UNIT_KNIGHT;
 
 	}
 

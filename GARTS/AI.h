@@ -12,6 +12,7 @@ const float RAID_COOLDOWN = 3000.0f;
 const int NO_OF_RAIDERS = 5;
 const float DECISION_CHANCE = 0.005;
 const int RETREAT_THRESHOLD = 2;
+const float NEWTARGET_CHANCE = 50.0f;
 
 const float SPAWN_CHANCE_SPEARMAN = 100.0f;
 const float SPAWN_CHANCE_ARCHER = 30.0f;

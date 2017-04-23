@@ -10,7 +10,7 @@ void Townhall::Update()
 	{
 		if (AABBCollision(this, gameObjectsRef->at(i)))
 		{
-			if (gameObjectsRef->at(i)->OT == OT_UNIT_WORKER)
+			if (gameObjectsRef->at(i)->OT == ObjectType::OT_UNIT_WORKER)
 			{
 				Worker* worker = (Worker*)gameObjectsRef->at(i);
 				if (worker->owner == owner)

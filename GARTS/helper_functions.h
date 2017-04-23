@@ -4,7 +4,9 @@
 #include <windows.h>
 #include <sstream>
 #include <SDL_ttf.h>
-#include "texture.h"
+//#include "texture.h"
+
+
 
 struct vec2
 {
@@ -49,5 +51,9 @@ inline int rand_range(int min, int max)
 	int result = rand() % (max - min + 1) + min;
 	return result;
 }
+
+
+
+
 
 #endif
