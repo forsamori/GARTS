@@ -2,7 +2,10 @@
 #define _BARRACKS_H
 
 #include "GameObject.h"
-#include "MilitaryUnit.h"
+#include "Spearman.h"
+#include "Archer.h"
+#include "Knight.h"
+//#include "MilitaryUnit.h"
 #include "UI.h"
 
 
@@ -31,7 +34,7 @@ public:
 	
 	~Barracks();
 
-	void SpawnUnit();
+	void SpawnUnit(ObjectType ot, std::vector<GameObject*>* aiUnits);
 	void Update();
 	void Render();
 

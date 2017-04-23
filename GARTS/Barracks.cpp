@@ -5,17 +5,39 @@ Barracks::~Barracks()
 {
 }
 
-void Barracks::SpawnUnit()
+void Barracks::SpawnUnit(ObjectType ot, std::vector<GameObject*>* aiUnits)
 {
 	
 	//GameObject unit = GameObject("..//media/man.bmp", _renderer, _gameObjects);
 	
-	gameObjects->push_back(MilitaryUnit("..//media/man.bmp", renderer, gameObjectsRef, gameObjects));
-	gameObjects->back().SetSpeed(0.1f);
-	gameObjects->back().SetX(GetX() + randf_ext(0.0f, 50.0f));
-	gameObjects->back().SetY(GetY() + randf_ext(0.0f, 50.0f));
-	gameObjects->back().owner = owner;
-	gameObjectsRef->push_back(&gameObjects->back());
+	switch (ot)
+	{
+		case OT_UNIT_SPEARMAN:
+		{
+			gameObjects->push_back(Spearman("..//media/spearman.bmp", renderer, gameObjectsRef, gameObjects));
+			break;
+		}
+		case OT_UNIT_ARCHER:
+		{
+			gameObjects->push_back(GameObject("..//media/archer.bmp", renderer, gameObjectsRef, gameObjects));
+			break;
+		}
+		case OT_UNIT_KNIGHT:
+		{
+			gameObjects->push_back(GameObject("..//media/knight.bmp", renderer, gameObjectsRef, gameObjects));
+			break;
+		}
+
+	}
+		
+		gameObjects->back().SetSpeed(0.1f);
+		gameObjects->back().SetX(GetX() + randf_ext(0.0f, 50.0f));
+		gameObjects->back().SetY(GetY() + randf_ext(0.0f, 50.0f));
+		gameObjects->back().owner = owner;
+		gameObjects->back().unitHome = this;
+		gameObjects->back().SetActive();
+		gameObjectsRef->push_back(&gameObjects->back());
+		aiUnits->push_back(&gameObjects->back());
 
 	//Need to find a way of getting UnitManager to declare correctly. Could possibly use Helper Functions, though not sure.
 	//The reason it broke was because of a circular dependency.
@@ -37,7 +59,7 @@ void Barracks::Update()
 		//Debug_String("Barracks is now selected");
 		if (beginSpawn)
 		{
-			SpawnUnit();
+			//SpawnUnit(); <---This one.
 			beginSpawn = false;
 		}
 		//SpawnUnit();
