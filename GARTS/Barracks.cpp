@@ -12,17 +12,38 @@ void Barracks::SpawnUnit(ObjectType ot, std::vector<GameObject*>* aiUnits)
 	
 	switch (ot)
 	{
-		case OT_UNIT_SPEARMAN:
+		case ObjectType::OT_UNIT_SPEARMAN:
 		{
-			gameObjects->push_back(Spearman("..//media/spearman.bmp", renderer, gameObjectsRef, gameObjects));
+			std::string unitArt;
+			if (owner == Owner::OWN_AI1)
+			{
+				unitArt = "..//media/spearman_red.bmp";
+			}
+			else if (owner == Owner::OWN_AI2)
+			{
+				unitArt = "..//media/spearman_blue.bmp";
+			}
+			else if (owner == Owner::OWN_AI3)
+			{
+				unitArt = "..//media/spearman_green.bmp";
+			}
+			else if (owner == Owner::OWN_AI4)
+			{
+				unitArt = "..//media/spearman_yellow.bmp";
+			}
+			else if (owner == Owner::OWN_P1)
+			{
+				unitArt = "..//media/spearman_black.bmp";
+			}
+			gameObjects->push_back(Spearman(unitArt, renderer, gameObjectsRef, gameObjects));
 			break;
 		}
-		case OT_UNIT_ARCHER:
+		case ObjectType::OT_UNIT_ARCHER:
 		{
 			gameObjects->push_back(GameObject("..//media/archer.bmp", renderer, gameObjectsRef, gameObjects));
 			break;
 		}
-		case OT_UNIT_KNIGHT:
+		case ObjectType::OT_UNIT_KNIGHT:
 		{
 			gameObjects->push_back(GameObject("..//media/knight.bmp", renderer, gameObjectsRef, gameObjects));
 			break;

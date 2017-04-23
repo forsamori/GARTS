@@ -27,7 +27,7 @@ public:
 		barracksUnit = UI(1024, 768, "..//media/infSpawn.bmp", _renderer);
 		barracksUnit.SetX(1024 - barracksUnit.GetWidth());
 		barracksUnit.SetY(768 - barracksUnit.GetHeight());
-		OT = OT_BARRACKS;
+		OT = ObjectType::OT_BARRACKS;
 
 		//Update();
 	}
