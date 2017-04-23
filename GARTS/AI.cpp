@@ -1,5 +1,6 @@
 #include "AI.h"
 
+
 AI::~AI()
 {
 }
@@ -100,9 +101,25 @@ void AI::Update()
 				}
 				else
 				{
-					myBarracks->SpawnUnit();
-					myTownhall->resources -= COST_SPEARMAN;
-					RefreshUnitList();
+					float spawnResult = randf();
+					//KNIGHT
+					if (spawnResult < SPAWN_CHANCE_KNIGHT)
+					{
+					}
+					//ARCHER
+					else if (spawnResult < SPAWN_CHANCE_ARCHER &&
+						spawnResult > SPAWN_CHANCE_KNIGHT)
+					{
+					}
+					//SPEARMAN
+					else if (spawnResult <= SPAWN_CHANCE_SPEARMAN &&
+						spawnResult > SPAWN_CHANCE_ARCHER)
+					{
+						myBarracks->SpawnUnit(OT_UNIT_SPEARMAN, &myUnits);
+						myTownhall->resources -= COST_SPEARMAN;
+					}
+
+					//RefreshUnitList();
 				}
 				raidCooldown--;
 			
@@ -120,6 +137,177 @@ void AI::Update()
 			//Run unit construction logic
 			//Run building construction logic
 			
+			break;
+		}
+		case AI_RAID_PHASE:
+		{
+			switch (currRaidState) //Issue here existing units get overwritten.
+			{
+			case RD_INIT:
+			{
+				int unitSelection = rand_range(0, myUnits.size()-1);
+				if (myRaiders.size() < NO_OF_RAIDERS)
+				{
+					if (myUnits.at(unitSelection)->OT == OT_UNIT_SPEARMAN ||
+						myUnits.at(unitSelection)->OT == OT_UNIT_ARCHER ||
+						myUnits.at(unitSelection)->OT == OT_UNIT_KNIGHT)
+					{
+						if (myUnits.at(unitSelection)->inRaidingParty == false)
+						{
+							myUnits.at(unitSelection)->inRaidingParty = true;
+
+							myRaiders.push_back(myUnits.at(unitSelection));
+						}
+					}
+				}
+				else
+				{
+					currRaidState = RD_SELECT_TARGET;
+				}
+
+				break;
+			}
+			case RD_SELECT_TARGET:
+			{
+				for (int i = 0; i < gameObjectsRef->size(); i++)
+				{
+					if (gameObjectsRef->at(i)->owner != owner);
+					{
+						enemyUnits.push_back(gameObjectsRef->at(i));
+					}
+				}
+				
+				Owner targetOwner = OWN_NONE;								 //Remove 
+				while (targetOwner == OWN_NONE || targetOwner == owner || targetOwner == OWN_P1)
+				{
+					targetOwner = static_cast<Owner>((rand() % 4) + 1); //TODO: Change this to 8
+				}
+				
+				targetUnits.clear();
+				for (int j = 0; j < enemyUnits.size(); j++)
+				{
+					if (enemyUnits.at(j)->owner == targetOwner)
+					{
+						targetUnits.push_back(enemyUnits.at(j));
+					}
+				}
+				
+				int randTarget = rand_range(0, targetUnits.size()-1);
+				for (int k = 0; k < myRaiders.size(); k++)
+				{
+					myRaiders.at(k)->SetTarget(targetUnits.at(randTarget));
+				}
+				currRaidState = RD_MOVE_TO_TARGET;
+				break;
+			}
+			case RD_MOVE_TO_TARGET:
+			{
+				for (int i = 0; i < myRaiders.size(); i++)
+				{
+					if (myRaiders.at(i)->unit_state == US_ENGAGE)
+					{
+						currRaidState = RD_ENGAGE;
+					}
+					myRaiders.at(i)->unit_state = US_MOVE_ENGAGE;
+				}
+
+				//Select all myRaiders use MOVE_TO_POINT
+				//on currentTarget
+				//If within range, goto RD_ENGAGE
+				break;
+			}
+				
+			case RD_ENGAGE:
+			{
+
+				for (int j = 0; j < targetUnits.size(); j++)
+				{
+					if (targetUnits.at(j)->GetHealth() <= 0)
+					{
+						targetUnits.erase(targetUnits.begin() + j);
+						killCount++;
+					}
+				}
+
+				for (int i = 0; i < myRaiders.size(); i++)
+				{
+					if (myRaiders.at(i)->currentTarget == NULL)
+					{
+						if (targetUnits.size() > 0)
+						{
+							int randTarget = rand_range(0, targetUnits.size() - 1);
+							myRaiders.at(i)->SetTarget(targetUnits.at(randTarget));
+						}
+						else
+						{
+							//Engagement complete
+							currRaidState = RD_RETREAT;
+						}
+					}
+				}
+
+				
+
+				if (myRaiders.size() < RETREAT_THRESHOLD)
+				{
+					for (int j = 0; j < myRaiders.size(); j++)
+					{
+						myRaiders.at(j)->SetTarget(NULL);
+					}
+					currRaidState = RD_RETREAT;
+				}
+
+				break;
+			}
+			case RD_RETREAT:
+			{
+				for (int i = 0; i < myRaiders.size(); i++)
+				{
+					myRaiders.at(i)->unit_state = US_RETREAT;
+				}
+				currRaidState = RD_EVALUATE;
+				break;
+			}
+			case RD_EVALUATE:
+			{
+				//Calculate remaining friendly units
+				for (int i = 0; i < myRaiders.size(); i++)
+				{
+					if (myRaiders.at(i)->GetHealth() <= 0)
+					{
+						casualtyCount++;
+					}
+				}
+
+				if (killCount > casualtyCount)
+				{
+					successfulEngagements++;
+				}
+				myRaiders.clear();
+				enemyUnits.clear();
+				targetUnits.clear();
+				currAIState = AI_START_ARMY_PHASE;
+				break;
+			}
+			default:
+				break;
+			}
+			
+
+
+			
+			//Select NO_OF_RAIDERS units.
+			//Find Target
+			//Move units to targets.
+			//Engage
+			//Monitor units...
+			//...if RAID_DEATH_THRESHOLD reached
+			//...retreat
+			//...ELSE
+			//...CONTINUE UNTIL RAID TARGETS DEAD
+			//...retreat
+			//GOTO AI_START_ARMY_PHASE
+
 			break;
 		}
 		case AI_MID_PHASE:
@@ -149,16 +337,98 @@ void AI::Update()
 			break;
 		}
 	}
+	if (prevAIState == NULL || prevAIState != currAIState)
+	{
+		std::string currStateOut;
+		std::string prevStateOut;
+
+		switch (currAIState)
+		{
+		case AI_INIT:
+			currStateOut = "AI_INIT";
+			break;
+		case AI_DESTROY:
+			currStateOut = "AI_DESTROY";
+			break;
+		case AI_START_COLLECT_PHASE:
+			currStateOut = "AI_START_COLLECT";
+			break;
+		case AI_START_ARMY_PHASE:
+			currStateOut = "AI_START_ARMY";
+			break;
+		case AI_RAID_PHASE:
+			currStateOut = "AI_RAID";
+			break;
+		case AI_MID_PHASE:
+			currStateOut = "AI_MID";
+			break;
+		case AI_END_PHASE:
+			currStateOut = "AI_MID";
+			break;
+		}
+
+		switch (prevAIState)
+		{
+		case AI_INIT:
+			prevStateOut = "AI_INIT";
+			break;
+		case AI_DESTROY:
+			prevStateOut = "AI_DESTROY";
+			break;
+		case AI_START_COLLECT_PHASE:
+			prevStateOut = "AI_START_COLLECT";
+			break;
+		case AI_START_ARMY_PHASE:
+			prevStateOut = "AI_START_ARMY";
+			break;
+		case AI_RAID_PHASE:
+			prevStateOut = "AI_RAID";
+			break;
+		case AI_MID_PHASE:
+			prevStateOut = "AI_MID";
+			break;
+		case AI_END_PHASE:
+			prevStateOut = "AI_MID";
+			break;
+		}
+		std::string s = "AI: ";
+		s.append(std::to_string(owner).c_str());
+		s.append(" entered STATE: ");
+		s.append(currStateOut);
+		s.append(" from STATE: ");
+		s.append(prevStateOut);
+		char* debugOut = (char*)s.c_str();
+
+		Debug_String(debugOut);
+	}
+
+	if (myBarracks->GetHealth() <= 0)
+	{
+		currAIState = AI_DESTROY;
+	}
+
+	prevAIState = currAIState;
+
+	
 
 }
 
 void AI::RefreshUnitList()
 {
+	Debug_String("Refreshing Unit List");
 	myUnits.clear();
+	Debug_String("Entering loop");
 	for (int i = 0; i < gameObjectsRef->size(); i++)
 	{
+		
+		std::string s = "Loop: ";
+		s.append(std::to_string(i).c_str());
+		char* debugOut = (char*)s.c_str();
+		Debug_String(debugOut);
+
 		if (gameObjectsRef->at(i)->owner == owner)
 		{
+			Debug_String("Push_Back");
 			myUnits.push_back(gameObjectsRef->at(i));
 		}
 	}

@@ -1,5 +1,9 @@
 #include "main.h"
 
+//TODO: FutureSam: The mouse is crashing the game
+//When you select anywhere, it corrupts a unit.
+//Fix it. Fix it now. Pretty please.
+
 int main(int argc, char* args[])
 {
 	//Start SDL
@@ -37,6 +41,13 @@ int main(int argc, char* args[])
 	resource.SetY(100.0f);
 	gameObjects.push_back(resource);
 	gameObjectsRef.push_back(&resource);
+
+	Worker worker = Worker("..//media/worker.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	worker.SetX(0.0f);
+	worker.SetY(150.0f);
+	gameObjects.push_back(worker);
+	gameObjectsRef.push_back(&worker);
+	worker.owner = OWN_AI1;
 	//-------------------------------
 	//AI2----------------------------
 	Townhall townhall2 = Townhall("..//media/townhall.bmp", gRenderer, &gameObjectsRef, &gameObjects);
@@ -59,6 +70,13 @@ int main(int argc, char* args[])
 	resource2.SetY(100.0f);
 	gameObjects.push_back(resource2);
 	gameObjectsRef.push_back(&resource2);
+
+	Worker worker2 = Worker("..//media/worker.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	worker2.SetX(SCREEN_WIDTH - barracks2.GetWidth());
+	worker2.SetY(150.0f);
+	gameObjects.push_back(worker2);
+	gameObjectsRef.push_back(&worker2);
+	worker2.owner = OWN_AI2;
 	//-------------------------------
 	//AI3----------------------------
 	Townhall townhall3 = Townhall("..//media/townhall.bmp", gRenderer, &gameObjectsRef, &gameObjects);
@@ -81,6 +99,13 @@ int main(int argc, char* args[])
 	resource3.SetY(SCREEN_HEIGHT - 100.0f);
 	gameObjects.push_back(resource3);
 	gameObjectsRef.push_back(&resource3);
+
+	Worker worker3 = Worker("..//media/worker.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	worker3.SetX(0.0f);
+	worker3.SetY(SCREEN_HEIGHT - barracks3.GetHeight() - 150.0f);
+	gameObjects.push_back(worker3);
+	gameObjectsRef.push_back(&worker3);
+	worker3.owner = OWN_AI3;
 	//-------------------------------
 	//AI4----------------------------
 
@@ -104,6 +129,13 @@ int main(int argc, char* args[])
 	resource4.SetY(SCREEN_HEIGHT - 100.0f);
 	gameObjects.push_back(resource4);
 	gameObjectsRef.push_back(&resource4);
+
+	Worker worker4 = Worker("..//media/worker.bmp", gRenderer, &gameObjectsRef, &gameObjects);
+	worker4.SetX(SCREEN_WIDTH - barracks4.GetWidth());
+	worker4.SetY(SCREEN_HEIGHT - barracks4.GetHeight() - 150.0f);
+	gameObjects.push_back(worker4);
+	gameObjectsRef.push_back(&worker4);
+	worker4.owner = OWN_AI4;
 	//-------------------------------
 	//ai1 = AI(&gameObjectsRef, &gameObjects, OWN_AI1);
 
@@ -169,6 +201,7 @@ bool init()
 				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
 				success = false;
 			}
+
 		}
 	}
 	return success;
@@ -204,7 +237,10 @@ void Update()
 	int vecSize = gameObjectsRef.size();
 	for (int i = 0; i < vecSize; i++)
 	{
-		gameObjectsRef.at(i)->Update();
+		if (gameObjectsRef.at(i)->GetActive() == true)
+		{
+			gameObjectsRef.at(i)->Update();
+		}
 		//Check if the size of the array has changed
 		int newVecSize = gameObjectsRef.size();
 		if (newVecSize != vecSize)
@@ -239,6 +275,7 @@ void Update()
 	ai1.Update();
 	ai2.Update();
 	ai3.Update();
+	ai4.Update();
 }
 
 void Render()
@@ -255,7 +292,10 @@ void Render()
 	int vecSize = gameObjectsRef.size();
 	for (int i = 0; i < vecSize; i++)
 	{
-		gameObjectsRef.at(i)->Render(/*Put a pointer to SDL_Renderer here to save memory (Harry said so)*/);
+		if (gameObjectsRef.at(i)->GetActive() == true)
+		{
+			gameObjectsRef.at(i)->Render(/*Put a pointer to SDL_Renderer here to save memory (Harry said so)*/);
+		}
 	}
 	//----
 
@@ -270,6 +310,9 @@ void Render()
 		SDL_RenderDrawRect(gRenderer, &mouseRect);
 		SDL_RenderPresent(gRenderer);
 	}
+
+
+
 
 	//Render using desired renderer
 	SDL_RenderPresent(gRenderer);

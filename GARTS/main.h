@@ -140,6 +140,7 @@ std::vector<GameObject> gameObjects;
 AI ai1 = AI(&gameObjectsRef, &gameObjects, OWN_AI1);
 AI ai2 = AI(&gameObjectsRef, &gameObjects, OWN_AI2);
 AI ai3 = AI(&gameObjectsRef, &gameObjects, OWN_AI3);
+AI ai4 = AI(&gameObjectsRef, &gameObjects, OWN_AI4); //Remember to get the AI to check all 8 targets.
 
 //UnitManager unitManager;
 
