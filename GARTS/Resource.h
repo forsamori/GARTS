@@ -11,6 +11,7 @@ public:
 	Resource(std::string tex_path, SDL_Renderer* _renderer, std::vector<GameObject*>* _gameObjectsRef, std::vector<GameObject>* _gameObjects) : GameObject(tex_path, _renderer, _gameObjectsRef, _gameObjects)
 	{
 		OT = OT_RESOURCE;
+		resourceRemaining = 10000;
 	}
 	~Resource();
 	int Harvest();
@@ -25,7 +26,7 @@ protected:
 private:
 
 	int harvestAmount = 5;
-	int resourceRemaining = 100;
+	int resourceRemaining = 10000;
 
 
 };

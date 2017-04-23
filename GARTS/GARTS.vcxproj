@@ -69,8 +69,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)SDL2-2.0.5\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)SDL2-2.0.5\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)SDL2-2.0.5\include;$(SolutionDir)SDL2_ttf-2.0.14\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)SDL2-2.0.5\lib\x86;C:\GARTS\GARTS\SDL2_ttf-2.0.14\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>C:\Users\Sam\Downloads\SDL2-devel-2.0.5-VC\SDL2-2.0.5\include;$(IncludePath)</IncludePath>
@@ -86,7 +86,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -133,11 +133,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
+    <ClCompile Include="Archer.cpp" />
     <ClCompile Include="Barracks.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Knight.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MilitaryUnit.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="Selector.cpp" />
+    <ClCompile Include="Spearman.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="Townhall.cpp" />
@@ -147,12 +151,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
+    <ClInclude Include="Archer.h" />
     <ClInclude Include="Barracks.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="helper_functions.h" />
+    <ClInclude Include="Knight.h" />
+    <ClInclude Include="militaryunit.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Selector.h" />
+    <ClInclude Include="Spearman.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="main.h" />

@@ -3,6 +3,8 @@
 
 #include <windows.h>
 #include <sstream>
+#include <SDL_ttf.h>
+#include "texture.h"
 
 struct vec2
 {
@@ -41,5 +43,11 @@ inline float randf_ext(float min = 0.0f, float max = 100.0f)
 	return result;
 }
 
+//Inclusive RandINT function
+inline int rand_range(int min, int max)
+{
+	int result = rand() % (max - min + 1) + min;
+	return result;
+}
 
 #endif

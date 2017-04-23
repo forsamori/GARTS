@@ -3,7 +3,7 @@
 
 #include "GameObject.h"
 
-enum UNIT_STATE
+/*enum UNIT_STATE
 {
 	US_IDLE,
 	US_MOVE,
@@ -12,7 +12,7 @@ enum UNIT_STATE
 	US_RETREAT,
 	US_DIE
 	//Make states here.
-};
+};*/
 
 //Once this class is done, create specific implementations for
 //spearmen, archer and cavalry
@@ -23,6 +23,7 @@ enum UNIT_STATE
 class MilitaryUnit : public GameObject
 {
 public:
+
 	MilitaryUnit(std::string tex_path, SDL_Renderer* _renderer, std::vector<GameObject*>* _gameObjectsRef, std::vector<GameObject>* _gameObjects) : GameObject(tex_path, _renderer, _gameObjectsRef, _gameObjects)
 	{
 		attackSpeed = 0.1f;
@@ -32,23 +33,28 @@ public:
 		
 		SetSpeed(0.1f);
 
+		inRaidingParty = false;
+
 		unit_state = US_MOVE_ENGAGE;
 		OT = OT_UNIT_SPEARMAN;
 
 	}
 
 	~MilitaryUnit();
+	void Init();
 	void Update();
 	void Render();
 
 	void DoAttack();
 
-
+	void SetTarget(GameObject* target);
 
 	UNIT_STATE unit_state;
-	int health;
+	//int health;
 	GameObject* currentTarget;
 	GameObject* unitHome;
+
+	bool inRaidingParty = false;
 protected:
 
 private:
@@ -63,6 +69,8 @@ private:
 
 	float xTarget;
 	float yTarget;
+
+
 
 };
 

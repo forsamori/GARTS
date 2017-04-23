@@ -1,7 +1,24 @@
 #include "MilitaryUnit.h"
 
+
+
 MilitaryUnit::~MilitaryUnit()
 {
+}
+
+void MilitaryUnit::Init()
+{
+	attackSpeed = 0.1f;
+	attackCooldown = 1.0f;
+	attackVal = 1.0f;
+	SetHealth(100.0f);
+
+	SetSpeed(0.1f);
+
+	inRaidingParty = false;
+
+	unit_state = US_MOVE_ENGAGE;
+	OT = OT_UNIT_SPEARMAN;
 }
 
 void MilitaryUnit::Update()
@@ -90,5 +107,10 @@ void MilitaryUnit::DoAttack()
 
 	Debug_String(debugOut);
 
+}
+
+void MilitaryUnit::SetTarget(GameObject * target)
+{
+	currentTarget = target;
 }
 
