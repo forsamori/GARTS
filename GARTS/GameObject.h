@@ -8,11 +8,13 @@
 #include <vector>
 //#include "UnitManager.h"
 
-//extern std::vector<GameObject> gameObjects;
+
 
 //Changed to enum class due to logical comparison
 //failure. This is a c++11 feature and allows
 //enums to be compared against each other.
+
+//Store unit type definitions.
 enum class ObjectType {
 	OT_UNIT,
 	OT_UNIT_WORKER,
@@ -24,6 +26,7 @@ enum class ObjectType {
 	OT_BARRACKS
 };
 
+//Store owner definitions.
 enum class Owner {
 	OWN_NONE,
 	OWN_P1,
@@ -36,6 +39,7 @@ enum class Owner {
 	OWN_AI7
 };
 
+//Store unit state definitions.
 enum class UNIT_STATE
 {
 	US_IDLE,
@@ -47,14 +51,15 @@ enum class UNIT_STATE
 	//Make states here.
 };
 
-
+//The gameobject class is the crux of the application.
+//It handles most of the heavy lifting now due to an issue
+//with polymorphism and casting. As such it is unnecessarily
+//bloated and difficult to read.
 class GameObject
 {
 
 public:
 	GameObject();
-	//Include pointer to gameobjects list so if a GameObject creates any other GameObjects, we can
-	//add them to the main update/render vector.
 	GameObject(std::string tex_path, SDL_Renderer*, std::vector<GameObject*>* _gameObjectsRef, std::vector<GameObject>* _gameObjects);
 	~GameObject();
 
@@ -114,8 +119,11 @@ public:
 	GameObject* unitHome;
 
 	bool inRaidingParty = false;
+	bool currentlySpawning;
 
 protected:
+	//Reference to global gameObjects.
+	//These are passed to derived classes.
 	std::vector<GameObject*>* gameObjectsRef;
 	std::vector<GameObject>* gameObjects;
 	SDL_Renderer* renderer;

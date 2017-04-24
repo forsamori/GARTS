@@ -1,25 +1,14 @@
+/*
+ALL MILITARYUNIT CODE MOVED TO GAMEOBJECT
+This was because of an issue with polymorphism and casting.
+Any derived classes using MilitaryUnit also suffer
+the same fate.*/
+
 #ifndef _MILITARY_UNIT_H
 #define _MILITARY_UNIT_H
 
 #include "GameObject.h"
 
-/*enum UNIT_STATE
-{
-	US_IDLE,
-	US_MOVE,
-	US_MOVE_ENGAGE,
-	US_ENGAGE,
-	US_RETREAT,
-	US_DIE
-	//Make states here.
-};*/
-
-//Once this class is done, create specific implementations for
-//spearmen, archer and cavalry
-//
-//Needs:
-//HP, ATK, COUNTER (assigned by child)
-//MoveSpeed
 class MilitaryUnit : public GameObject
 {
 public:

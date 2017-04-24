@@ -30,7 +30,7 @@ void Resource::Render()
 {
 
 	if (resourceRemaining >= 0)
-	{//HACK
+	{
 	//Execute generic GameObject render
 		GameObject::Render();
 	}

@@ -1,3 +1,8 @@
+/*
+Orphan functions that don't belong anywhere.
+used as a utility throughout the application
+as a programming aide.*/
+
 #ifndef _HELPER_FUNCTIONS_H
 #define _HELPER_FUNCTIONS_H
 

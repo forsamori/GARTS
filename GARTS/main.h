@@ -1,29 +1,17 @@
-//IMPORTANT (DONE, TEST): The following implementation is currently set up to...
-//...render using software on the CPU. Swap to GPU to allow...
-//...CPU to concentrate on game-logic and GA...
-
-//TODO
 /*
-GameObject class
-GameObject collision detection AA->BB bounding box
-Mouse click input
-Mouse drag input
-GameObject move-to-point
-GameObject health
+GARTS (GENETIC ALGORITHM REAL TIME STRATEGY)
+Created as part of honours assessment (CGT4 Abertay University)
+Created by Samuel Cumming
+Honours Supervisor: Dr. Craig Stark
 
-Once a building is selected, pop up health and build buttons.
-The button should be overlayed on top of the building for easy pressing.
-Treat it as a gameobject to prevent code-repetition.
+Purpose: To determine whether GA powered AIs can increase replayability
+and player enjoyment compared to conventional, static AIs.
 
-//It's dangerous to go alone: Read this for virtual function fun.
-//TODO:: Barracks update needs to be called. We want Barracks::Update to run first, then GameObject::Update. Read the below tutorial.
-http://www.cplusplus.com/doc/tutorial/polymorphism/
+Uses SDL2.0 as a back-end and is built from the ground up.
+StartDate: 7/1/17
+EndDate:   24/4/17
 
-
-CURRENT: Get Barracks UI button to spawn units. Right now it can be selected (AS IF IT WERE A NORMAL GAMEOBJECT)...
-...We don't want this. Instead, make it behave like a UI element (i.e it cannot be selected, only clicked and an action fired).
-
-//SEE MOVE TO POINT
+See https://github.com/forsamori/GARTS for github.
 */
 
 
@@ -85,13 +73,16 @@ void Update();
 
 void Render();
 
-//void SpawnUnit(GameObject spawnObject);
+//Execute GA activity
+//Calculate candidate fitness
+void CalcFitness();
+//Select candidates by their fitness
+void PlotRoulette(int noOfPicks);
+//Cross-over successful candidates to generate new ones
+void Recombine(AI* candidates[]);
+//Mutate chromosome to prevent stale genetics.
+void Mutate(AI* candidates[]);
 
-
-//Helper Debug Function. Prints string to Debug output
-//void Debug_String(char* string);
-
-//int Lerp(float t, int a, int b);
 
 //Declare SDL_ vars
 SDL_Event _event;
@@ -125,24 +116,33 @@ SDL_Renderer* gRenderer = NULL;
 Selector selection;
 
 
-
+//Mouse click timing controls
 bool mouseDown;
 float mouseDownTime;
 
-//extern bool beginSpawn;
-
+//Mouse click position
 vec2f clickStart;
 vec2f clickCurrent;
 
+//IMPORTANT - These vectors are the soul of the application.
+//They carry references to all gameobjects. Be careful when editing them.
 std::vector<GameObject*> gameObjectsRef;
 std::vector<GameObject> gameObjects;
 
+//Set up all AIs and identify them
 AI ai1 = AI(&gameObjectsRef, &gameObjects, Owner::OWN_AI1);
 AI ai2 = AI(&gameObjectsRef, &gameObjects, Owner::OWN_AI2);
 AI ai3 = AI(&gameObjectsRef, &gameObjects, Owner::OWN_AI3);
-AI ai4 = AI(&gameObjectsRef, &gameObjects, Owner::OWN_AI4); //Remember to get the AI to check all 8 targets.
+AI ai4 = AI(&gameObjectsRef, &gameObjects, Owner::OWN_AI4);
 
-//UnitManager unitManager;
+//Hold fitness values.
+float fitness_ai1;
+float fitness_ai2;
+float fitness_ai3;
+float fitness_ai4;
+
+float GA_TIMER;
+
 
 // --- END Global Variables ---
 

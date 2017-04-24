@@ -5,13 +5,27 @@ Barracks::~Barracks()
 {
 }
 
+//Spawn a unit and add it to this AI's units.
 void Barracks::SpawnUnit(ObjectType ot, std::vector<GameObject*>* aiUnits)
 {
-	
+	bool dontSpawn = false;
 	//GameObject unit = GameObject("..//media/man.bmp", _renderer, _gameObjects);
-	
-	switch (ot)
+	GameObject* newUnit = nullptr;
+	for (int i = 0; i < gameObjectsRef->size(); i++)
 	{
+		if (gameObjectsRef->at(i)->OT == ObjectType::OT_BARRACKS)
+		{
+			if (gameObjectsRef->at(i)->currentlySpawning == true)
+			{
+				dontSpawn = true;
+			}
+		}
+	}
+	if (dontSpawn == false)
+	{
+		currentlySpawning = true;
+		switch (ot)
+		{
 		case ObjectType::OT_UNIT_SPEARMAN:
 		{
 			std::string unitArt;
@@ -36,20 +50,27 @@ void Barracks::SpawnUnit(ObjectType ot, std::vector<GameObject*>* aiUnits)
 				unitArt = "..//media/spearman_black.bmp";
 			}
 			gameObjects->push_back(Spearman(unitArt, renderer, gameObjectsRef, gameObjects));
+			//newUnit = &gameObjects->back();
+			//gameObjects->push_back(Spearman(unitArt, renderer, gameObjectsRef, gameObjects));
+			//newUnit = gameObjects->back();
 			break;
 		}
 		case ObjectType::OT_UNIT_ARCHER:
 		{
 			gameObjects->push_back(GameObject("..//media/archer.bmp", renderer, gameObjectsRef, gameObjects));
+			//newUnit = &gameObjects->back();
+			//newUnit = Archer("..//media/archer.bmp", renderer, gameObjectsRef, gameObjects);
 			break;
 		}
 		case ObjectType::OT_UNIT_KNIGHT:
 		{
 			gameObjects->push_back(GameObject("..//media/knight.bmp", renderer, gameObjectsRef, gameObjects));
+			//newUnit = &gameObjects->back();
+			//newUnit = Knight("..//media/knight.bmp", renderer, gameObjectsRef, gameObjects);
 			break;
 		}
 
-	}
+		}
 		
 		gameObjects->back().SetSpeed(0.1f);
 		gameObjects->back().SetX(GetX() + randf_ext(0.0f, 50.0f));
@@ -60,11 +81,9 @@ void Barracks::SpawnUnit(ObjectType ot, std::vector<GameObject*>* aiUnits)
 		gameObjectsRef->push_back(&gameObjects->back());
 		aiUnits->push_back(&gameObjects->back());
 
-	//Need to find a way of getting UnitManager to declare correctly. Could possibly use Helper Functions, though not sure.
-	//The reason it broke was because of a circular dependency.
-	//unitManager->SpawnUnit(unit);
-	//_gameObjects->push_back(&unit); //Problem pushing GameObject into this list.
-	//gameObjects->push_back(&unit);
+		currentlySpawning = false;
+		Debug_String("Spawning!");
+	}
 }
 
 //Called by baseclass (GameObject)

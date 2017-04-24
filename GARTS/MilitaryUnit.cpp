@@ -26,8 +26,7 @@ void MilitaryUnit::Update()
 
 	if (GetHealth() <= 0)
 	{
-		//FUTURE SAM: Find a good way of destroying objects
-		//safely. You may need to pop them off the gameObjects lists
+		
 		for (int i = 0; i < gameObjectsRef->size(); i++)
 		{
 			if (gameObjectsRef->at(i) == this)

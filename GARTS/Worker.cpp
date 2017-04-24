@@ -7,8 +7,7 @@ Worker::~Worker()
 void Worker::Update()
 {
 
-	//Worker is getting stuck on rock. Check states, debug.
-
+	//Move between rock and home collecting/depositing resources.
 	if (worker_state == WS_COLLECT_GOTO || worker_state == WS_COLLECT_RETURN)
 	{
 		for (int i = 0; i < gameObjectsRef->size(); i++)
@@ -63,14 +62,13 @@ void Worker::Render()
 	GameObject::Render();
 }
 
+//Find nearest resource and progress to next state to move to it.
 void Worker::CollectCycle()
 {
 	switch (worker_state)
 	{
 	case WS_IDLE:
 	{
-		//notify worker is idle
-		//SOMETHING IS SETTING IT BACK TO COLLECT_INIT, FIND IT AND DESTROY IT.
 		break;
 	}
 	case WS_COLLECT_INIT:

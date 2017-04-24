@@ -51,6 +51,12 @@ GameObject::GameObject(std::string tex_path, SDL_Renderer* _renderer, std::vecto
 	active = true;
 
 	inRaidingParty = false;
+
+	if (tex_path == "")
+	{
+		bool breakhere;
+		breakhere = true;
+	}
 }
 
 GameObject::~GameObject()
@@ -127,14 +133,16 @@ void GameObject::SetAngle(int _angle)
 	angle = _angle;
 }
 
+//Handles updating GameObject's position and logic.
+//Also handles militaryunit logic, since it was moved here
+//due to an issue with polymorphism and casting.
 void GameObject::Update()
 {
 
 	
+	//Destroy the object if its health is less than or equal to 0.
 	if (GetHealth() <= 0)
 	{
-		//FUTURE SAM: Find a good way of destroying objects
-		//safely. You may need to pop them off the gameObjects lists
 		for (int i = 0; i < gameObjectsRef->size(); i++)
 		{
 			if (gameObjectsRef->at(i) == this)
@@ -150,6 +158,7 @@ void GameObject::Update()
 	if (isMilUnit == true)
 	{
 
+		//Perform actions based on the units current state.
 		switch (unit_state)
 		{
 		case UNIT_STATE::US_IDLE:
@@ -160,6 +169,7 @@ void GameObject::Update()
 			}
 			break;
 		}
+		//Move to a target location.
 		case UNIT_STATE::US_MOVE:
 		{
 			//if (prev_unit_state != unit_state)
@@ -169,6 +179,7 @@ void GameObject::Update()
 			MoveToPoint(xTarget, yTarget);
 			break;
 		}
+		//Move to a target unit and engage when colliding with it.
 		case UNIT_STATE::US_MOVE_ENGAGE:
 		{
 			//if (prev_unit_state != unit_state)
@@ -189,6 +200,8 @@ void GameObject::Update()
 			}
 			break;
 		}
+		//Attack current target if it still exists and unit is in contact with it,
+		//otherwise retreat.
 		case UNIT_STATE::US_ENGAGE:
 		{
 			//if (prev_unit_state != unit_state)
@@ -223,7 +236,7 @@ void GameObject::Update()
 			}
 			break;
 		}
-
+		//Retreat back to home base.
 		case UNIT_STATE::US_RETREAT:
 		{
 			//if (prev_unit_state != unit_state)
@@ -243,6 +256,7 @@ void GameObject::Update()
 			}
 			break;
 		}
+		//Unused.
 		case UNIT_STATE::US_DIE:
 		{
 			if (prev_unit_state != unit_state)
@@ -274,13 +288,12 @@ void GameObject::Update()
 	prev_unit_state = unit_state;
 
 }
-//Justin was here, 14/02/17  15:57
 void GameObject::Render()
 {
 	sprite.Render();
 	if (selected == true)
 	{
-		DrawBox(/*Pass pointer to renderer here as well*/);
+		DrawBox();
 	}
 }
 
@@ -354,6 +367,7 @@ float GameObject::GetHealth()
 	return health;
 }
 
+//Initialize Military Units.
 void GameObject::MilInit()
 {
 	attackSpeed = 0.1f;
@@ -372,6 +386,7 @@ void GameObject::MilInit()
 
 }
 
+//Attack the current target.
 void GameObject::DoAttack()
 {
 	float targetHealth = currentTarget->GetHealth();
